@@ -104,20 +104,11 @@
     position:relative;
   }
 
-  /* Right panel — bleeds to edge */
+  /* Right panel — transparent, blends with hero */
   .hero-right {
-    background:linear-gradient(145deg, #EFF6FF 0%, #DBEAFE 60%, #BFDBFE 100%);
+    background:transparent;
     display:flex; align-items:center; justify-content:center;
     position:relative; overflow:hidden;
-  }
-  /* Subtle grid on right panel */
-  .hero-right::before {
-    content:'';
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(30,58,95,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(30,58,95,0.06) 1px, transparent 1px);
-    background-size:40px 40px;
   }
 
   /* Background orbs on left */
@@ -219,41 +210,27 @@
     padding:5rem 3rem;
   }
 
-  /* Portrait pill */
+  /* Photo — no frame, just the image */
   .portrait {
-    width:230px; height:320px;
-    background:linear-gradient(160deg,#F0F9FF 0%,#DBEAFE 100%);
-    border-radius:140px;
-    border:4px solid var(--surface);
-    box-shadow:0 0 0 8px rgba(30,58,95,0.08), 0 30px 60px rgba(30,58,95,0.12);
+    position:relative; z-index:10;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .portrait img {
+    width:320px;
+    object-fit:contain;
+    filter:drop-shadow(0 20px 40px rgba(30,58,95,0.15));
+    animation:fadeIn 1s 0.3s ease both;
+  }
+  /* Placeholder shown before photo is added */
+  .portrait-placeholder {
+    width:240px; height:340px;
+    border:2px dashed var(--navy-border);
+    border-radius:16px;
     display:flex; align-items:center; justify-content:center;
     flex-direction:column; gap:0.5rem;
-    position:relative; z-index:10;
-    overflow:hidden;
+    color:var(--muted-light);
+    font-size:0.75rem; font-weight:600;
   }
-  .portrait::after {
-    content:''; position:absolute; inset:0; border-radius:140px;
-    border:1px solid rgba(30,58,95,0.12);
-  }
-  .portrait-icon { font-size:3rem; }
-  .portrait-hint {
-    font-family:'Playfair Display',serif; font-style:italic;
-    font-size:0.78rem; color:var(--navy-mid); text-align:center; line-height:1.8; opacity:0.7;
-  }
-
-  /* Live badge */
-  .portrait-badge {
-    position:absolute; bottom:-13px; left:50%; transform:translateX(-50%);
-    background:var(--ink); color:#fff;
-    padding:0.4rem 1.3rem; border-radius:50px;
-    font-size:0.58rem; font-weight:800; letter-spacing:0.15em; text-transform:uppercase;
-    white-space:nowrap; z-index:15;
-    box-shadow:0 4px 16px rgba(17,24,39,0.25);
-    animation:badgePop 0.7s 1s cubic-bezier(0.34,1.56,0.64,1) both;
-    display:flex; align-items:center; gap:0.5rem;
-  }
-  .badge-live-dot { width:6px; height:6px; border-radius:50%; background:#93C5FD; animation:logoPulse 1.5s infinite; }
-  @keyframes badgePop { from{opacity:0;transform:translateX(-50%) scale(0.7)} to{opacity:1;transform:translateX(-50%) scale(1)} }
 
   /* Floating bio cards */
   .fc {
@@ -590,14 +567,9 @@
         <div class="fc-sub">Writer & Builder</div>
       </div>
 
-      <!-- Portrait -->
+      <!-- Portrait — just upload your photo as "photo.png" to GitHub, done -->
       <div class="portrait">
-        <div class="portrait-icon">👤</div>
-        <div class="portrait-hint">Your Portrait<br>Goes Here</div>
-        <div class="portrait-badge">
-          <span class="badge-live-dot"></span>
-          CEFR Planner — Live
-        </div>
+        <img src="photo.png" alt="Mr Reyy">
       </div>
 
     </div>
