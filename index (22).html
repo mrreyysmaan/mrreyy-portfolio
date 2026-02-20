@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr Reyy | Educator & Digital Innovator</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #F9FAFB;
+    --bg-alt:   #EFF6FF;
+    --surface:  #FFFFFF;
+    --navy:     #1E3A5F;
+    --navy-mid: #2D5986;
+    --navy-pale:#DBEAFE;
+    --navy-dim: rgba(30,58,95,0.07);
+    --navy-border: rgba(30,58,95,0.14);
+    --ink:      #111827;
+    --ink-mid:  #1F2937;
+    --muted:    #374151;
+    --muted-mid:#6B7280;
+    --muted-light:#9CA3AF;
+    --border:   #E5E7EB;
+    --border-light:#F3F4F6;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family:'Manrope',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+
+  /* Dot grid */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image:radial-gradient(circle, rgba(30,58,95,0.055) 1px, transparent 1px);
+    background-size:30px 30px;
+    pointer-events:none; z-index:0;
+  }
+
+  /* ═══════════ NAV ═══════════ */
+  nav {
+    position:fixed; top:0; width:100%; z-index:1000;
+    padding:0 5%; height:68px;
+    display:flex; justify-content:space-between; align-items:center;
+    background:rgba(249,250,251,0.92);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    transition:box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow:0 4px 24px rgba(0,0,0,0.07); }
+
+  .logo {
+    font-size:1.15rem; font-weight:800; color:var(--ink);
+    text-decoration:none; letter-spacing:-0.5px;
+    display:flex; align-items:center; gap:0.45rem;
+  }
+  .logo-pulse {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--navy);
+    animation:logoPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%,100%{box-shadow:0 0 0 2px rgba(30,58,95,0.2);}
+    50%{box-shadow:0 0 0 6px rgba(30,58,95,0.08),0 0 14px rgba(30,58,95,0.15);}
+  }
+  .logo em { font-family:'Playfair Display',serif; font-style:italic; color:var(--navy); }
+
+  .nav-links { display:flex; gap:0.3rem; align-items:center; }
+  .nav-links a {
+    font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--muted-mid); text-decoration:none;
+    padding:0.5rem 0.9rem; border-radius:6px;
+    transition:all 0.2s;
+  }
+  .nav-links a:hover { color:var(--navy); background:var(--navy-dim); }
+  .nav-cta {
+    background:var(--ink) !important; color:#fff !important;
+    padding:0.5rem 1.3rem !important; border-radius:50px !important;
+    font-weight:800 !important;
+  }
+  .nav-cta:hover { background:var(--navy) !important; box-shadow:0 4px 18px rgba(30,58,95,0.25) !important; transform:translateY(-1px); }
+
+  /* ═══════════ HERO — FULL WIDTH ═══════════ */
+  .hero {
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    padding-top:68px;
+    position:relative; z-index:1;
+    overflow:hidden;
+  }
+
+  /* Left panel */
+  .hero-left {
+    padding:5rem 5% 5rem 6%;
+    display:flex; flex-direction:column; justify-content:center;
+    position:relative;
+  }
+
+  /* Right panel — bleeds to edge */
+  .hero-right {
+    background:linear-gradient(145deg, #EFF6FF 0%, #DBEAFE 60%, #BFDBFE 100%);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  /* Subtle grid on right panel */
+  .hero-right::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(30,58,95,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,58,95,0.06) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
+
+  /* Background orbs on left */
+  .orb {
+    position:absolute; border-radius:50%;
+    filter:blur(70px); pointer-events:none; z-index:0;
+  }
+  .orb-1 { top:10%; left:-10%; width:400px; height:400px; background:radial-gradient(circle,#BFDBFE,transparent 70%); opacity:0.6; animation:orbDrift 14s ease-in-out infinite; }
+  .orb-2 { bottom:-5%; left:30%; width:300px; height:300px; background:radial-gradient(circle,#DBEAFE,transparent 70%); opacity:0.5; animation:orbDrift 18s ease-in-out infinite reverse; }
+  @keyframes orbDrift {
+    0%,100%{transform:translate(0,0);}
+    50%{transform:translate(20px,-25px);}
+  }
+
+  /* Hero left content */
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:0.7rem;
+    background:var(--surface); border:1px solid var(--navy-border);
+    border-radius:50px; padding:0.4rem 1.1rem;
+    margin-bottom:2.2rem;
+    box-shadow:0 2px 12px rgba(30,58,95,0.08);
+    animation:fadeUp 0.8s ease both;
+    width:fit-content;
+  }
+  .badge-dot { width:7px; height:7px; border-radius:50%; background:var(--navy-mid); animation:logoPulse 2s infinite; }
+  .badge-text { font-size:0.6rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--navy); }
+
+  h1.hero-name {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.8rem,4.5vw,5rem);
+    font-weight:800; line-height:1.0; letter-spacing:-0.02em;
+    color:var(--ink); margin-bottom:0.5rem;
+    animation:fadeUp 0.8s 0.08s ease both;
+  }
+  h1.hero-name em { font-style:italic; color:var(--navy); }
+
+  .hero-typed {
+    font-size:clamp(0.9rem,1.5vw,1.15rem); font-weight:600;
+    color:var(--muted-mid); margin-bottom:2rem; min-height:2em;
+    animation:fadeUp 0.8s 0.16s ease both;
+  }
+  .typed-cursor {
+    display:inline-block; width:2px; height:1em;
+    background:var(--navy); margin-left:2px;
+    vertical-align:middle; animation:blink 0.9s step-end infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+  .hero-bio {
+    font-size:0.88rem; line-height:2; color:var(--muted-mid);
+    max-width:470px; margin-bottom:2.5rem;
+    animation:fadeUp 0.8s 0.24s ease both;
+  }
+  .hero-bio strong { color:var(--ink); font-weight:700; }
+  .hero-bio .accent { color:var(--navy); font-weight:700; }
+
+  .hero-btns {
+    display:flex; gap:1rem; align-items:center; flex-wrap:wrap;
+    margin-bottom:3.5rem;
+    animation:fadeUp 0.8s 0.32s ease both;
+  }
+  .btn-primary {
+    display:inline-flex; align-items:center; gap:0.6rem;
+    background:var(--ink); color:#fff;
+    padding:0.95rem 2.2rem; border-radius:50px;
+    font-weight:800; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+    text-decoration:none; transition:all 0.25s;
+    box-shadow:0 4px 18px rgba(17,24,39,0.2);
+  }
+  .btn-primary:hover { background:var(--navy); transform:translateY(-2px); box-shadow:0 10px 28px rgba(30,58,95,0.25); }
+  .btn-ghost {
+    display:inline-flex; align-items:center; gap:0.6rem;
+    border:2px solid var(--navy-border); color:var(--navy);
+    padding:0.95rem 2.2rem; border-radius:50px;
+    font-weight:800; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+    text-decoration:none; transition:all 0.25s;
+  }
+  .btn-ghost:hover { background:var(--navy-dim); border-color:var(--navy); }
+
+  /* Stats */
+  .hero-stats {
+    display:flex; border-top:1px solid var(--border);
+    animation:fadeUp 0.8s 0.4s ease both;
+  }
+  .hstat {
+    flex:1; padding:1.4rem 0 0; border-right:1px solid var(--border);
+    padding-right:2rem; transition:all 0.3s;
+  }
+  .hstat:last-child { border-right:none; }
+  .hstat:hover { background:var(--bg-alt); border-radius:0 0 10px 10px; }
+  .hstat-num { font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:800; color:var(--navy); line-height:1; margin-bottom:0.3rem; }
+  .hstat-label { font-size:0.58rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted-light); }
+
+  /* ═══════════ BIODATA VISUAL — right panel ═══════════ */
+  .biodata-visual {
+    position:relative; z-index:1;
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    padding:5rem 3rem;
+  }
+
+  /* Portrait pill */
+  .portrait {
+    width:230px; height:320px;
+    background:linear-gradient(160deg,#F0F9FF 0%,#DBEAFE 100%);
+    border-radius:140px;
+    border:4px solid var(--surface);
+    box-shadow:0 0 0 8px rgba(30,58,95,0.08), 0 30px 60px rgba(30,58,95,0.12);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:0.5rem;
+    position:relative; z-index:10;
+    overflow:hidden;
+  }
+  .portrait::after {
+    content:''; position:absolute; inset:0; border-radius:140px;
+    border:1px solid rgba(30,58,95,0.12);
+  }
+  .portrait-icon { font-size:3rem; }
+  .portrait-hint {
+    font-family:'Playfair Display',serif; font-style:italic;
+    font-size:0.78rem; color:var(--navy-mid); text-align:center; line-height:1.8; opacity:0.7;
+  }
+
+  /* Live badge */
+  .portrait-badge {
+    position:absolute; bottom:-13px; left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    padding:0.4rem 1.3rem; border-radius:50px;
+    font-size:0.58rem; font-weight:800; letter-spacing:0.15em; text-transform:uppercase;
+    white-space:nowrap; z-index:15;
+    box-shadow:0 4px 16px rgba(17,24,39,0.25);
+    animation:badgePop 0.7s 1s cubic-bezier(0.34,1.56,0.64,1) both;
+    display:flex; align-items:center; gap:0.5rem;
+  }
+  .badge-live-dot { width:6px; height:6px; border-radius:50%; background:#93C5FD; animation:logoPulse 1.5s infinite; }
+  @keyframes badgePop { from{opacity:0;transform:translateX(-50%) scale(0.7)} to{opacity:1;transform:translateX(-50%) scale(1)} }
+
+  /* Floating bio cards */
+  .fc {
+    position:absolute; z-index:20;
+    background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.9);
+    border-radius:14px; padding:0.85rem 1.1rem;
+    box-shadow:0 8px 28px rgba(30,58,95,0.1), 0 2px 8px rgba(0,0,0,0.04);
+    white-space:nowrap;
+  }
+  .fc-label { font-size:0.55rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--navy-mid); margin-bottom:0.22rem; }
+  .fc-value { font-size:0.88rem; font-weight:800; color:var(--ink); }
+  .fc-sub { font-size:0.6rem; color:var(--muted-light); margin-top:0.1rem; font-weight:500; }
+
+  .fc-1 { top:8%;  left:4%;  animation:fcFloat 4s   ease-in-out infinite 0s; }
+  .fc-2 { top:8%;  right:4%; animation:fcFloat 4.5s ease-in-out infinite 0.7s; }
+  .fc-3 { top:44%; left:1%;  animation:fcFloat 3.8s ease-in-out infinite 1.4s; }
+  .fc-4 { top:44%; right:1%; animation:fcFloat 4.2s ease-in-out infinite 2.1s; }
+  .fc-5 { bottom:8%; left:4%;  animation:fcFloat 4s ease-in-out infinite 0.3s; }
+  .fc-6 { bottom:8%; right:4%; animation:fcFloat 4.5s ease-in-out infinite 1s; }
+
+  @keyframes fcFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);} }
+
+  /* ═══════════ SECTIONS ═══════════ */
+  .section { padding:7rem 6%; position:relative; z-index:1; }
+
+  .sec-eye {
+    display:inline-flex; align-items:center; gap:0.8rem;
+    font-size:0.58rem; font-weight:800; letter-spacing:0.35em; text-transform:uppercase;
+    color:var(--navy); margin-bottom:0.8rem;
+  }
+  .sec-eye::before { content:''; width:20px; height:2px; background:var(--navy); border-radius:2px; }
+  .sec-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2rem,3vw,3rem); font-weight:800; line-height:1.1;
+    letter-spacing:-0.02em; color:var(--ink); margin-bottom:1rem;
+  }
+  .sec-title em { font-style:italic; color:var(--navy); }
+  .sec-sub { font-size:0.88rem; color:var(--muted-mid); max-width:500px; margin:0 auto; }
+
+  /* ═══════════ ABOUT ═══════════ */
+  .about-sec { background:var(--surface); }
+  .about-inner { max-width:1100px; margin:0 auto; }
+  .about-header { margin-bottom:4rem; }
+  .about-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:6rem; align-items:start; }
+
+  .about-copy p { font-size:0.88rem; line-height:2; color:var(--muted-mid); margin-bottom:1.4rem; }
+  .about-copy strong { color:var(--ink); font-weight:700; }
+  .about-copy .accent { color:var(--navy); font-weight:700; }
+
+  .about-sidebar { display:flex; flex-direction:column; gap:1rem; }
+  .sidebar-card {
+    background:var(--bg); border:1.5px solid var(--border);
+    border-left:3px solid var(--navy);
+    border-radius:10px; padding:1.5rem;
+    display:flex; gap:1rem; align-items:flex-start;
+    transition:all 0.3s;
+  }
+  .sidebar-card:hover { transform:translateX(5px); box-shadow:0 6px 24px rgba(30,58,95,0.08); border-color:var(--navy-border); }
+  .sc-icon { font-size:1.4rem; flex-shrink:0; }
+  .sc-title { font-family:'Playfair Display',serif; font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:0.3rem; }
+  .sc-text { font-size:0.72rem; color:var(--muted-mid); line-height:1.75; }
+
+  /* ═══════════ MILESTONES ═══════════ */
+  .milestones-sec { background:var(--bg); }
+  .milestones-inner { max-width:1100px; margin:0 auto; }
+  .tab-shell { max-width:760px; margin:3.5rem auto 0; }
+
+  .year-tabs { display:flex; justify-content:center; gap:0.8rem; margin-bottom:3rem; flex-wrap:wrap; }
+  .tab-btn {
+    background:var(--surface); border:1.5px solid var(--border);
+    padding:0.65rem 1.8rem; border-radius:50px;
+    font-family:'Manrope',sans-serif; font-weight:800; font-size:0.88rem;
+    color:var(--muted-mid); cursor:pointer; transition:all 0.25s;
+    box-shadow:0 2px 8px rgba(0,0,0,0.04);
+  }
+  .tab-btn:hover:not(.active) { border-color:var(--navy); color:var(--navy); transform:translateY(-2px); }
+  .tab-btn.active {
+    background:var(--navy); color:#fff; border-color:var(--navy);
+    box-shadow:0 6px 20px rgba(30,58,95,0.25); transform:translateY(-1px);
+  }
+
+  .tab-content { position:relative; min-height:220px; }
+  .tab-pane { display:none; animation:slideUp 0.45s ease both; }
+  .tab-pane.active { display:block; }
+  @keyframes slideUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+  .ach-item {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:1.8rem 2rem;
+    margin-bottom:1.2rem; display:flex; gap:1.4rem; align-items:flex-start;
+    transition:all 0.3s; position:relative; overflow:hidden;
+  }
+  .ach-item::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:3px; background:var(--navy);
+    transform:scaleY(0); transform-origin:top; transition:transform 0.35s ease;
+  }
+  .ach-item:hover::before { transform:scaleY(1); }
+  .ach-item:hover { border-color:var(--navy-border); transform:translateX(4px); box-shadow:0 6px 24px rgba(30,58,95,0.07); }
+  .ach-icon { font-size:1.8rem; flex-shrink:0; }
+  .ach-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:0.4rem; }
+  .ach-desc { font-size:0.78rem; color:var(--muted-mid); line-height:1.8; }
+
+  .loading-state { text-align:center; padding:3rem 2rem; }
+  .spinner { width:44px; height:44px; border-radius:50%; border:3px solid var(--navy-pale); border-top-color:var(--navy); animation:spin 0.9s linear infinite; margin:0 auto 1.5rem; }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loading-state h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--ink); margin-bottom:0.6rem; }
+  .loading-state p { font-size:0.8rem; color:var(--muted-mid); line-height:1.8; }
+
+  /* ═══════════ PROJECTS — BENTO ═══════════ */
+  .projects-sec { background:var(--surface); }
+  .projects-inner { max-width:1100px; margin:0 auto; }
+  .bento { display:grid; grid-template-columns:1.6fr 1fr 1fr; grid-template-rows:auto auto; gap:1.2rem; margin-top:4rem; }
+
+  .bcard {
+    background:var(--bg); border:1.5px solid var(--border);
+    border-radius:18px; padding:2.5rem;
+    transition:all 0.3s; position:relative; overflow:hidden;
+  }
+  .bcard::before {
+    content:''; position:absolute; top:0; left:0; right:0;
+    height:3px; background:linear-gradient(90deg,var(--navy),var(--navy-mid));
+    transform:scaleX(0); transform-origin:left; transition:transform 0.4s ease;
+  }
+  .bcard:hover::before { transform:scaleX(1); }
+  .bcard:hover { border-color:var(--navy-border); transform:translateY(-4px); box-shadow:0 16px 40px rgba(30,58,95,0.1); }
+  .bcard.span2 { grid-column:span 2; }
+  .bcard.dark { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .bcard.dark:hover { background:var(--ink); }
+  .bcard.light-accent { background:var(--bg-alt); border-color:rgba(30,58,95,0.12); }
+
+  .b-tag {
+    display:inline-block; font-size:0.58rem; font-weight:800;
+    letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--navy); background:var(--navy-dim);
+    border:1px solid var(--navy-border);
+    padding:0.3rem 0.8rem; border-radius:50px; margin-bottom:1.2rem;
+  }
+  .bcard.dark .b-tag { color:#93C5FD; background:rgba(147,197,253,0.1); border-color:rgba(147,197,253,0.2); }
+  .bcard.light-accent .b-tag { color:var(--navy); }
+
+  .b-title {
+    font-family:'Playfair Display',serif;
+    font-size:1.4rem; font-weight:800; color:var(--ink);
+    margin-bottom:0.8rem; line-height:1.2; letter-spacing:-0.01em;
+  }
+  .bcard.dark .b-title { color:#fff; }
+  .b-desc { font-size:0.78rem; color:var(--muted-mid); line-height:1.85; }
+  .bcard.dark .b-desc { color:rgba(255,255,255,0.6); }
+  .bcard.light-accent .b-desc { color:var(--muted); }
+
+  .b-link {
+    display:inline-flex; align-items:center; gap:0.6rem;
+    margin-top:2rem; background:var(--surface); color:var(--navy);
+    padding:0.75rem 1.6rem; border-radius:50px;
+    font-weight:800; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase;
+    text-decoration:none; border:1.5px solid var(--navy-border);
+    transition:all 0.25s;
+  }
+  .b-link:hover { background:var(--navy); color:#fff; border-color:var(--navy); transform:translateY(-1px); box-shadow:0 6px 16px rgba(30,58,95,0.2); }
+
+  .b-stack { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.2rem; }
+  .b-stag {
+    font-size:0.58rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--muted-mid); border:1px solid var(--border);
+    padding:0.25rem 0.7rem; border-radius:6px;
+  }
+
+  /* ═══════════ PHILOSOPHY ═══════════ */
+  .philosophy-sec { background:var(--navy); padding:7rem 6%; position:relative; z-index:1; overflow:hidden; }
+  .philosophy-sec::before {
+    content:'"'; position:absolute; top:-2rem; right:3rem;
+    font-family:'Playfair Display',serif; font-size:24rem; font-weight:800;
+    color:rgba(255,255,255,0.04); line-height:1; pointer-events:none;
+  }
+  .phil-inner { max-width:860px; margin:0 auto; text-align:center; position:relative; z-index:1; }
+  .phil-eye {
+    display:inline-flex; align-items:center; gap:0.7rem;
+    font-size:0.6rem; font-weight:800; letter-spacing:0.35em; text-transform:uppercase;
+    color:rgba(255,255,255,0.4); margin-bottom:2.5rem;
+  }
+  .phil-eye::before,.phil-eye::after { content:''; width:20px; height:1px; background:rgba(255,255,255,0.2); }
+  .phil-quote {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.4rem,3vw,2.2rem); font-style:italic; font-weight:600;
+    color:#fff; line-height:1.65; margin-bottom:2.5rem;
+  }
+  .phil-author {
+    display:inline-flex; align-items:center; gap:1rem;
+    font-size:0.65rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+  }
+  .phil-author::before,.phil-author::after { content:''; width:30px; height:1px; background:rgba(255,255,255,0.18); }
+
+  /* ═══════════ CONTACT ═══════════ */
+  .contact-sec { background:var(--ink); padding:8rem 6%; position:relative; z-index:1; overflow:hidden; }
+  .contact-sec::before {
+    content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%);
+    width:800px; height:400px; border-radius:50%;
+    background:radial-gradient(circle, rgba(30,58,95,0.25) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .contact-inner { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; position:relative; z-index:1; }
+  .contact-eye { font-size:0.6rem; font-weight:800; letter-spacing:0.35em; text-transform:uppercase; color:#93C5FD; margin-bottom:1rem; display:flex; align-items:center; gap:0.7rem; }
+  .contact-eye::before { content:''; width:20px; height:1.5px; background:#93C5FD; border-radius:2px; }
+  .contact-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:1.5rem; letter-spacing:-0.02em; }
+  .contact-title em { font-style:italic; color:#93C5FD; }
+  .contact-copy { font-size:0.87rem; line-height:2; color:rgba(255,255,255,0.35); margin-bottom:2.5rem; }
+  .contact-email { display:inline-flex; align-items:center; gap:0.8rem; font-family:'Playfair Display',serif; font-size:1.1rem; font-style:italic; color:#93C5FD; text-decoration:none; border-bottom:1px solid rgba(147,197,253,0.3); padding-bottom:0.4rem; transition:all 0.3s; }
+  .contact-email:hover { color:#fff; border-color:rgba(255,255,255,0.4); }
+
+  .contact-channels { display:flex; flex-direction:column; gap:1rem; }
+  .c-ch { display:flex; align-items:center; gap:1.2rem; padding:1.4rem; border:1px solid rgba(255,255,255,0.07); border-radius:12px; text-decoration:none; transition:all 0.3s; }
+  .c-ch:hover { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.14); transform:translateX(5px); }
+  .c-icon { font-size:1.3rem; }
+  .c-lbl { font-size:0.58rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:0.2rem; }
+  .c-val { font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.8); }
+
+  /* ═══════════ FOOTER ═══════════ */
+  footer { background:rgba(0,0,0,0.35); padding:2rem 6%; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.06); position:relative; z-index:1; }
+  .footer-logo { font-family:'Playfair Display',serif; font-size:1rem; font-weight:800; color:rgba(255,255,255,0.7); }
+  .footer-logo em { font-style:italic; color:#93C5FD; }
+  .footer-copy { font-size:0.6rem; color:rgba(255,255,255,0.22); letter-spacing:0.1em; }
+  .footer-links { display:flex; gap:2rem; list-style:none; }
+  .footer-links a { font-size:0.6rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); text-decoration:none; transition:color 0.3s; }
+  .footer-links a:hover { color:#93C5FD; }
+
+  /* ═══════════ SCROLL ANIMATIONS ═══════════ */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.active { opacity:1; transform:translateY(0); }
+  .reveal-l { opacity:0; transform:translateX(-26px); transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+  .reveal-l.active { opacity:1; transform:translateX(0); }
+  .reveal-r { opacity:0; transform:translateX(26px); transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+  .reveal-r.active { opacity:1; transform:translateX(0); }
+  .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="#" class="logo">
+    <span class="logo-pulse"></span>
+    Mr <em>Reyy</em>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#milestones">Milestones</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="https://your-cefr-app.railway.app" class="nav-cta">CEFR Planner</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO — FULL WIDTH SPLIT ═══ -->
+<section class="hero" id="hero">
+
+  <div class="hero-left">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      <span class="badge-text">🇲🇾 Malaysian Educator & Digital Innovator</span>
+    </div>
+
+    <h1 class="hero-name">Hello, I'm<br><em>Mr Reyy.</em></h1>
+
+    <p class="hero-typed"><span id="typed-el"></span><span class="typed-cursor"></span></p>
+
+    <p class="hero-bio">
+      An <strong>English language teacher</strong> from Malaysia with a passion for
+      <span class="accent">digital innovation in education</span>. I design lessons,
+      build tools, and share experiences — because great classrooms deserve great tools.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">Explore My Work ↓</a>
+      <a href="#about" class="btn-ghost">Learn More</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">ELT</div>
+        <div class="hstat-label">English Teacher</div>
+      </div>
+      <div class="hstat" style="padding-left:2rem">
+        <div class="hstat-num">CEFR</div>
+        <div class="hstat-label">Specialist</div>
+      </div>
+      <div class="hstat" style="padding-left:2rem">
+        <div class="hstat-num">1+</div>
+        <div class="hstat-label">Apps Live</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel — full height, bleeds to edge -->
+  <div class="hero-right">
+    <div class="biodata-visual">
+
+      <!-- 6 floating cards -->
+      <div class="fc fc-1">
+        <div class="fc-label">Current Role</div>
+        <div class="fc-value">English Educator</div>
+        <div class="fc-sub">Language Arts</div>
+      </div>
+      <div class="fc fc-2">
+        <div class="fc-label">Framework</div>
+        <div class="fc-value">CEFR A1–C2</div>
+        <div class="fc-sub">Specialist</div>
+      </div>
+      <div class="fc fc-3">
+        <div class="fc-label">Based In</div>
+        <div class="fc-value">🇲🇾 Malaysia</div>
+        <div class="fc-sub">Puchong, Selangor</div>
+      </div>
+      <div class="fc fc-4">
+        <div class="fc-label">Built With</div>
+        <div class="fc-value">AI + Code</div>
+        <div class="fc-sub">Claude & Gemini</div>
+      </div>
+      <div class="fc fc-5">
+        <div class="fc-label">Latest App</div>
+        <div class="fc-value">CEFR Planner</div>
+        <div class="fc-sub">Live on Railway</div>
+      </div>
+      <div class="fc fc-6">
+        <div class="fc-label">Approach</div>
+        <div class="fc-value">Reflective</div>
+        <div class="fc-sub">Writer & Builder</div>
+      </div>
+
+      <!-- Portrait -->
+      <div class="portrait">
+        <div class="portrait-icon">👤</div>
+        <div class="portrait-hint">Your Portrait<br>Goes Here</div>
+        <div class="portrait-badge">
+          <span class="badge-live-dot"></span>
+          CEFR Planner — Live
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section about-sec" id="about">
+  <div class="about-inner">
+    <div class="about-header">
+      <div class="sec-eye reveal">About Me</div>
+      <h2 class="sec-title reveal">Teacher by calling.<br><em>Builder</em> by curiosity.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy reveal-l">
+        <p>I'm Mr Reyy — an English language teacher from <strong>Puchong, Selangor, Malaysia</strong> with a growing passion for bringing digital innovation into the classroom.</p>
+        <p>Beyond teaching, I build <span class="accent">digital tools for educators</span>. My first: the CEFR Lesson Planner — a web app that generates internationally-benchmarked lesson plans in seconds. Built with HTML, CSS and JavaScript, deployed live on Railway with AI assistance.</p>
+        <p>That project proved something: <strong>teachers can be makers</strong>. The tools we need don't always exist yet — and we're often the best people to build them.</p>
+      </div>
+      <div class="about-sidebar reveal-r">
+        <div class="sidebar-card d1">
+          <span class="sc-icon">📚</span>
+          <div><div class="sc-title">English Language Teaching</div><div class="sc-text">Communication-first approach, building real confidence in the language.</div></div>
+        </div>
+        <div class="sidebar-card d2">
+          <span class="sc-icon">⚙️</span>
+          <div><div class="sc-title">Digital Innovation</div><div class="sc-text">Building EdTech tools that solve problems I've personally faced in the classroom.</div></div>
+        </div>
+        <div class="sidebar-card d3">
+          <span class="sc-icon">✍️</span>
+          <div><div class="sc-title">Sharing & Reflecting</div><div class="sc-text">Documenting what works, what doesn't, and what I'm learning along the way.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MILESTONES ═══ -->
+<section class="section milestones-sec" id="milestones">
+  <div class="milestones-inner">
+    <div style="text-align:center">
+      <div class="sec-eye reveal" style="justify-content:center">Milestones</div>
+      <h2 class="sec-title reveal" style="text-align:center">A timeline of <em>growth.</em></h2>
+      <p class="sec-sub reveal d1">Pedagogical and technical milestones, year by year.</p>
+    </div>
+    <div class="tab-shell reveal d2">
+      <div class="year-tabs">
+        <button class="tab-btn" data-target="2023">2023</button>
+        <button class="tab-btn" data-target="2024">2024</button>
+        <button class="tab-btn active" data-target="2025">2025</button>
+        <button class="tab-btn" data-target="2026">2026</button>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane" id="pane-2023">
+          <div class="ach-item"><div class="ach-icon">🏆</div><div><div class="ach-title">Foundational Pedagogy</div><div class="ach-desc">Deepening classroom engagement and establishing core English teaching methodologies aligned with national curriculum standards.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">📖</div><div><div class="ach-title">Language Skills Focus</div><div class="ach-desc">Sharpening delivery across all four skills — reading, writing, listening and speaking — with a focus on real-world communication.</div></div></div>
+        </div>
+        <div class="tab-pane" id="pane-2024">
+          <div class="ach-item"><div class="ach-icon">💡</div><div><div class="ach-title">Digital Transition Initiative</div><div class="ach-desc">Identified key bottlenecks in lesson planning and began conceptualising digital workflows to give teachers back their time.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🎓</div><div><div class="ach-title">CEFR Deep Dive</div><div class="ach-desc">Mastered the CEFR framework to better align classroom activities and assessments to international standards.</div></div></div>
+        </div>
+        <div class="tab-pane active" id="pane-2025">
+          <div class="ach-item"><div class="ach-icon">🚀</div><div><div class="ach-title">Deployed CEFR Lesson Planner</div><div class="ach-desc">Designed, coded (Vanilla HTML/CSS/JS), and deployed a custom platform on Railway — streamlining CEFR-aligned lesson planning for educators.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🤖</div><div><div class="ach-title">AI Collaboration Mastery</div><div class="ach-desc">Pioneered use of Claude and Gemini to accelerate development of personalised teaching software without a traditional coding background.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🌐</div><div><div class="ach-title">Portfolio Site Launched</div><div class="ach-desc">Launched this portfolio to document teaching experiences, digital innovations, and reflections — building in public as an educator who builds.</div></div></div>
+        </div>
+        <div class="tab-pane" id="pane-2026">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <h3>Architecting the next milestone…</h3>
+            <p>2026 is currently in motion. Exploring new pedagogical tools and expanding the reach of digital classrooms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section class="section projects-sec" id="projects">
+  <div class="projects-inner">
+    <div>
+      <div class="sec-eye reveal">Selected Works</div>
+      <h2 class="sec-title reveal">Tools built for <em>modern education.</em></h2>
+    </div>
+    <div class="bento">
+      <div class="bcard dark span2 reveal d1" style="display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <span class="b-tag">● Live App</span>
+          <h3 class="b-title">The CEFR Lesson Planner</h3>
+          <p class="b-desc" style="max-width:480px">A bespoke web application generating CEFR-aligned lesson plans for educators. Built from scratch with HTML, CSS and JavaScript. Deployed live on Railway.</p>
+        </div>
+        <div>
+          <div class="b-stack" style="margin-bottom:1.5rem">
+            <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">HTML</span>
+            <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">CSS</span>
+            <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">JavaScript</span>
+            <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">Railway</span>
+          </div>
+          <a href="https://your-cefr-app.railway.app" class="b-link">Access the tool →</a>
+        </div>
+      </div>
+      <div class="bcard reveal d2">
+        <span class="b-tag">Stack</span>
+        <h3 class="b-title">Tech Used</h3>
+        <p class="b-desc">Vanilla HTML, CSS, JavaScript. Hosted on Railway. Built with Claude & Gemini AI assistance.</p>
+        <div class="b-stack" style="margin-top:1.5rem">
+          <span class="b-stag">Vanilla JS</span>
+          <span class="b-stag">Railway</span>
+          <span class="b-stag">AI-Assisted</span>
+        </div>
+      </div>
+      <div class="bcard light-accent span2 reveal d1">
+        <span class="b-tag">Philosophy</span>
+        <h3 class="b-title">Why I Build</h3>
+        <p class="b-desc" style="max-width:520px">Because the tools we need don't always exist yet. By combining pedagogy with digital curiosity, teachers can reclaim their time and amplify their impact.</p>
+      </div>
+      <div class="bcard reveal d2">
+        <span class="b-tag">Status</span>
+        <h3 class="b-title">Building</h3>
+        <p class="b-desc">Collaborating with AI to solve the next classroom challenge. The best idea is always the next one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHILOSOPHY ═══ -->
+<section class="philosophy-sec">
+  <div class="phil-inner">
+    <div class="phil-eye reveal">Teaching Philosophy</div>
+    <blockquote class="phil-quote reveal d1">
+      "Teaching English is not about correcting mistakes — it's about building the courage to make them. Every error is evidence of a student who is trying."
+    </blockquote>
+    <div class="phil-author reveal d2">Mr Reyy</div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="reveal-l">
+      <div class="contact-eye">Get In Touch</div>
+      <h2 class="contact-title">Let's <em>connect.</em></h2>
+      <p class="contact-copy">Whether you're a fellow educator, a student, an EdTech enthusiast, or someone who just found this site — I'd love to hear from you.</p>
+      <a href="mailto:reyy@email.com" class="contact-email">reyy@email.com →</a>
+    </div>
+    <div class="contact-channels reveal-r">
+      <a href="mailto:reyy@email.com" class="c-ch d1"><span class="c-icon">✉️</span><div><div class="c-lbl">Email</div><div class="c-val">reyy@email.com</div></div></a>
+      <a href="https://your-cefr-app.railway.app" class="c-ch d2"><span class="c-icon">🌐</span><div><div class="c-lbl">CEFR Lesson Planner</div><div class="c-val">Open the live app →</div></div></a>
+      <a href="#" class="c-ch d3"><span class="c-icon">💼</span><div><div class="c-lbl">LinkedIn</div><div class="c-val">Connect professionally</div></div></a>
+      <a href="#" class="c-ch d4"><span class="c-icon">📸</span><div><div class="c-lbl">Social</div><div class="c-val">Follow my journey</div></div></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Mr <em>Reyy</em></div>
+  <p class="footer-copy">© 2025 · Educator & Digital Innovator · Malaysia</p>
+  <ul class="footer-links">
+    <li><a href="https://your-cefr-app.railway.app">CEFR Planner</a></li>
+    <li><a href="#">LinkedIn</a></li>
+    <li><a href="#">Email</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Typing animation
+  const phrases = ['English Language Teacher.','Digital Innovator.','CEFR Specialist.','Classroom Builder.','Malaysian Educator.'];
+  let pi=0,ci=0,del=false;
+  const typedEl = document.getElementById('typed-el');
+  function type(){
+    const cur=phrases[pi];
+    if(!del){typedEl.textContent=cur.slice(0,++ci);if(ci===cur.length){del=true;setTimeout(type,1900);return;}}
+    else{typedEl.textContent=cur.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+    setTimeout(type,del?40:80);
+  }
+  type();
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target);} });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll',()=>{
+    document.getElementById('main-nav').classList.toggle('scrolled',scrollY>40);
+  });
+
+  // Milestone tabs
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(`pane-${btn.dataset.target}`).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
