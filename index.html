@@ -48,8 +48,7 @@
   nav {
     position:fixed; top:0; width:100%; z-index:1000;
     padding:0 5%; height:68px;
-    display:flex; justify-content:center; align-items:center;
-    gap:3rem;
+    display:flex; justify-content:space-between; align-items:center;
     background:rgba(249,250,251,0.92);
     backdrop-filter:blur(20px);
     border-bottom:1px solid var(--border);
@@ -73,7 +72,10 @@
   }
   .logo em { font-family:'Manrope',sans-serif; font-style:normal; color:var(--navy); font-weight:800; }
 
-  .nav-links { display:flex; gap:0.3rem; align-items:center; }
+  .nav-links {
+    display:flex; gap:0.3rem; align-items:center;
+    position:absolute; left:50%; transform:translateX(-50%);
+  }
   .nav-links a {
     font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
     color:var(--muted-mid); text-decoration:none;
@@ -486,7 +488,7 @@
 <nav id="main-nav">
   <a href="#" class="logo">
     <span class="logo-pulse"></span>
-    MrReyy<em>.com</em>
+    MrReyy<em style="letter-spacing:0">.com</em>
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
@@ -736,7 +738,7 @@
 </section>
 
 <footer>
-  <div class="footer-logo">MrReyy<em>.com</em></div>
+  <div class="footer-logo">MrReyy<em style="letter-spacing:0">.com</em></div>
   <p class="footer-copy">© 2025 · Educator & Digital Innovator · Malaysia</p>
   <ul class="footer-links">
     <li><a href="https://cefr-lesson-planner-production.up.railway.app/">CEFR Planner</a></li>
