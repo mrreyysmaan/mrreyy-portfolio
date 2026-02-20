@@ -70,7 +70,7 @@
     0%,100%{box-shadow:0 0 0 2px rgba(30,58,95,0.2);}
     50%{box-shadow:0 0 0 6px rgba(30,58,95,0.08),0 0 14px rgba(30,58,95,0.15);}
   }
-  .logo em { font-family:'Playfair Display',serif; font-style:italic; color:var(--navy); }
+  .logo em { font-family:'Manrope',sans-serif; font-style:normal; color:var(--navy); font-weight:800; }
 
   .nav-links { display:flex; gap:0.3rem; align-items:center; }
   .nav-links a {
@@ -143,7 +143,29 @@
     color:var(--ink); margin-bottom:0.5rem;
     animation:fadeUp 0.8s 0.08s ease both;
   }
-  h1.hero-name em { font-style:italic; color:var(--navy); }
+  h1.hero-name em {
+    font-style:italic;
+    background:linear-gradient(
+      105deg,
+      var(--navy) 0%,
+      var(--navy) 35%,
+      #7BA7D4 48%,
+      #DBEAFE 52%,
+      #7BA7D4 56%,
+      var(--navy) 70%,
+      var(--navy) 100%
+    );
+    background-size:250% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:sheenSweep 3.5s ease-in-out infinite;
+  }
+  @keyframes sheenSweep {
+    0%   { background-position:200% center; }
+    50%  { background-position:-20% center; }
+    100% { background-position:200% center; }
+  }
 
   .hero-typed {
     font-size:clamp(0.9rem,1.5vw,1.15rem); font-weight:600;
@@ -452,8 +474,8 @@
 
   /* ═══════════ FOOTER ═══════════ */
   footer { background:rgba(0,0,0,0.35); padding:2rem 6%; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.06); position:relative; z-index:1; }
-  .footer-logo { font-family:'Playfair Display',serif; font-size:1rem; font-weight:800; color:rgba(255,255,255,0.7); }
-  .footer-logo em { font-style:italic; color:#93C5FD; }
+  .footer-logo { font-family:'Manrope',sans-serif; font-size:1rem; font-weight:800; color:rgba(255,255,255,0.7); }
+  .footer-logo em { font-style:normal; color:#93C5FD; }
   .footer-copy { font-size:0.6rem; color:rgba(255,255,255,0.22); letter-spacing:0.1em; }
   .footer-links { display:flex; gap:2rem; list-style:none; }
   .footer-links a { font-size:0.6rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); text-decoration:none; transition:color 0.3s; }
@@ -477,7 +499,7 @@
 <nav id="main-nav">
   <a href="#" class="logo">
     <span class="logo-pulse"></span>
-    Mr <em>Reyy</em>
+    MrReyy<em>.com</em>
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
@@ -727,7 +749,7 @@
 </section>
 
 <footer>
-  <div class="footer-logo">Mr <em>Reyy</em></div>
+  <div class="footer-logo">MrReyy<em>.com</em></div>
   <p class="footer-copy">© 2025 · Educator & Digital Innovator · Malaysia</p>
   <ul class="footer-links">
     <li><a href="https://cefr-lesson-planner-production.up.railway.app/">CEFR Planner</a></li>
@@ -749,10 +771,19 @@
   }
   type();
 
-  // Scroll reveal
+  // Scroll reveal — both directions
   const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target);} });
-  },{threshold:0.1});
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('active');
+      } else {
+        // Only reset if scrolling back up past the element
+        if(e.boundingClientRect.top > 0){
+          e.target.classList.remove('active');
+        }
+      }
+    });
+  },{threshold:0.12});
   document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
 
   // Nav shadow on scroll
