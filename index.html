@@ -757,20 +757,25 @@
   }
   type();
 
-  // Scroll reveal — both directions
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('active');
+  // Scroll reveal — both directions (up & down)
+  const revealEls = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+
+  function checkReveal() {
+    const triggerPoint = window.innerHeight * 0.88;
+    revealEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < triggerPoint && rect.bottom > 0) {
+        // Element is in view — animate in
+        el.classList.add('active');
       } else {
-        // Only reset if scrolling back up past the element
-        if(e.boundingClientRect.top > 0){
-          e.target.classList.remove('active');
-        }
+        // Element is out of view — reset so it animates again
+        el.classList.remove('active');
       }
     });
-  },{threshold:0.12});
-  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+  }
+
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  checkReveal(); // Run once on load
 
   // Nav shadow on scroll
   window.addEventListener('scroll',()=>{
