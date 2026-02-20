@@ -145,26 +145,12 @@
   }
   h1.hero-name em {
     font-style:italic;
-    background:linear-gradient(
-      105deg,
-      var(--navy) 0%,
-      var(--navy) 35%,
-      #7BA7D4 48%,
-      #DBEAFE 52%,
-      #7BA7D4 56%,
-      var(--navy) 70%,
-      var(--navy) 100%
-    );
-    background-size:250% auto;
-    -webkit-background-clip:text;
-    background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:sheenSweep 3.5s ease-in-out infinite;
+    color:var(--navy);
+    animation:breathe 3.5s ease-in-out infinite;
   }
-  @keyframes sheenSweep {
-    0%   { background-position:200% center; }
-    50%  { background-position:-20% center; }
-    100% { background-position:200% center; }
+  @keyframes breathe {
+    0%,100% { color:var(--navy); }
+    50%      { color:#93C5FD; }
   }
 
   .hero-typed {
