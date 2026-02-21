@@ -3,666 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mr Reyy | Educator & Digital Innovator</title>
+<title>Mr Reyy | Educator &amp; Digital Innovator</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:       #F9FAFB;
-    --bg-alt:   #EFF6FF;
-    --surface:  #FFFFFF;
-    --navy:     #1E3A5F;
-    --navy-mid: #2D5986;
-    --navy-pale:#DBEAFE;
-    --navy-dim: rgba(30,58,95,0.07);
-    --navy-border: rgba(30,58,95,0.14);
-    --ink:      #111827;
-    --ink-mid:  #1F2937;
-    --muted:    #374151;
-    --muted-mid:#6B7280;
-    --muted-light:#9CA3AF;
-    --border:   #E5E7EB;
-    --border-light:#F3F4F6;
+    --bg:#F9FAFB; --bg-alt:#EFF6FF; --surface:#FFFFFF;
+    --navy:#1E3A5F; --navy-mid:#2D5986; --navy-pale:#DBEAFE;
+    --navy-dim:rgba(30,58,95,0.07); --navy-border:rgba(30,58,95,0.14);
+    --ink:#111827; --muted:#374151; --muted-mid:#6B7280;
+    --muted-light:#9CA3AF; --border:#E5E7EB;
   }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.6;}
+  body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(30,58,95,0.055) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;z-index:0;}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
+  /* ── NAV ── */
+  nav{position:fixed;top:0;width:100%;z-index:1000;padding:0 5%;height:68px;display:flex;justify-content:space-between;align-items:center;background:rgba(249,250,251,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s;}
+  nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.07);}
+  .logo{font-size:1.15rem;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;display:flex;align-items:center;gap:0.45rem;}
+  .logo-pulse{width:8px;height:8px;border-radius:50%;background:var(--navy);animation:logoPulse 2.5s ease-in-out infinite;}
+  @keyframes logoPulse{0%,100%{box-shadow:0 0 0 2px rgba(30,58,95,0.2);}50%{box-shadow:0 0 0 6px rgba(30,58,95,0.08),0 0 14px rgba(30,58,95,0.15);}}
+  .logo em{font-style:normal;color:var(--navy);font-weight:800;}
+  .nav-links{display:flex;gap:0.3rem;align-items:center;position:absolute;left:50%;transform:translateX(-50%);}
+  .nav-links a{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted-mid);text-decoration:none;padding:0.5rem 0.9rem;border-radius:6px;transition:all 0.2s;}
+  .nav-links a:hover{color:var(--navy);background:var(--navy-dim);}
+  .nav-cta{background:var(--ink);color:#fff;padding:0.5rem 1.3rem;border-radius:50px;font-weight:800;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:all 0.2s;display:inline-block;}
+  .nav-cta:hover{background:var(--navy);box-shadow:0 4px 18px rgba(30,58,95,0.25);transform:translateY(-1px);}
 
-  body {
-    font-family:'Manrope',sans-serif;
-    background:var(--bg);
-    color:var(--ink);
-    overflow-x:hidden;
-    line-height:1.6;
-  }
+  /* ── HERO ── */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:68px;position:relative;z-index:1;overflow:hidden;}
+  .hero-left{padding:5rem 5% 5rem 6%;display:flex;flex-direction:column;justify-content:center;position:relative;}
+  .hero-right{background:transparent;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;}
+  .orb-1{top:10%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,#BFDBFE,transparent 70%);opacity:0.6;animation:orbDrift 14s ease-in-out infinite;}
+  .orb-2{bottom:-5%;left:30%;width:300px;height:300px;background:radial-gradient(circle,#DBEAFE,transparent 70%);opacity:0.5;animation:orbDrift 18s ease-in-out infinite reverse;}
+  @keyframes orbDrift{0%,100%{transform:translate(0,0);}50%{transform:translate(20px,-25px);}}
+  .hero-badge{display:inline-flex;align-items:center;gap:0.7rem;background:var(--surface);border:1px solid var(--navy-border);border-radius:50px;padding:0.4rem 1.1rem;margin-bottom:2.2rem;box-shadow:0 2px 12px rgba(30,58,95,0.08);animation:fadeUp 0.8s ease both;width:fit-content;}
+  .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--navy-mid);animation:logoPulse 2s infinite;}
+  .badge-text{font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--navy);}
+  h1.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.5vw,5rem);font-weight:800;line-height:1.0;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.5rem;animation:fadeUp 0.8s 0.08s ease both;}
+  h1.hero-name em{font-style:italic;color:var(--navy);animation:breathe 3.5s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{color:var(--navy);}50%{color:#93C5FD;}}
+  .hero-typed{font-size:clamp(0.9rem,1.5vw,1.15rem);font-weight:600;color:var(--muted-mid);margin-bottom:2rem;min-height:2em;animation:fadeUp 0.8s 0.16s ease both;}
+  .typed-cursor{display:inline-block;width:2px;height:1em;background:var(--navy);margin-left:2px;vertical-align:middle;animation:blink 0.9s step-end infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+  .hero-bio{font-size:0.88rem;line-height:2;color:var(--muted-mid);max-width:470px;margin-bottom:2.5rem;animation:fadeUp 0.8s 0.24s ease both;}
+  .hero-bio strong{color:var(--ink);font-weight:700;}
+  .hero-bio .accent{color:var(--navy);font-weight:700;}
+  .hero-btns{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:3.5rem;animation:fadeUp 0.8s 0.32s ease both;}
+  .btn-primary{display:inline-flex;align-items:center;gap:0.6rem;background:var(--ink);color:#fff;padding:0.95rem 2.2rem;border-radius:50px;font-weight:800;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.25s;box-shadow:0 4px 18px rgba(17,24,39,0.2);}
+  .btn-primary:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 10px 28px rgba(30,58,95,0.25);}
+  .btn-ghost{display:inline-flex;align-items:center;gap:0.6rem;border:2px solid var(--navy-border);color:var(--navy);padding:0.95rem 2.2rem;border-radius:50px;font-weight:800;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.25s;}
+  .btn-ghost:hover{background:var(--navy-dim);border-color:var(--navy);}
+  .hero-stats{display:flex;border-top:1px solid var(--border);animation:fadeUp 0.8s 0.4s ease both;}
+  .hstat{flex:1;padding:1.4rem 0 0;border-right:1px solid var(--border);padding-right:2rem;transition:all 0.3s;}
+  .hstat:last-child{border-right:none;}
+  .hstat:hover{background:var(--bg-alt);border-radius:0 0 10px 10px;}
+  .hstat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:0.3rem;}
+  .hstat-label{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted-light);}
 
-  /* Dot grid */
-  body::before {
-    content:'';
-    position:fixed; inset:0;
-    background-image:radial-gradient(circle, rgba(30,58,95,0.055) 1px, transparent 1px);
-    background-size:30px 30px;
-    pointer-events:none; z-index:0;
-  }
+  /* ── FLOATING CARDS ── */
+  .biodata-visual{position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:5rem 3rem;}
+  .portrait{position:relative;z-index:10;display:flex;align-items:center;justify-content:center;}
+  .portrait img{width:320px;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(30,58,95,0.15));animation:fadeUp 1s 0.3s ease both;}
+  .fc{position:absolute;z-index:20;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.9);border-radius:14px;padding:0.85rem 1.1rem;box-shadow:0 8px 28px rgba(30,58,95,0.1),0 2px 8px rgba(0,0,0,0.04);white-space:nowrap;}
+  .fc-label{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy-mid);margin-bottom:0.22rem;}
+  .fc-value{font-size:0.88rem;font-weight:800;color:var(--ink);}
+  .fc-sub{font-size:0.6rem;color:var(--muted-light);margin-top:0.1rem;font-weight:500;}
+  .fc-1{top:8%;left:4%;animation:fcFloat 4s ease-in-out infinite 0s;}
+  .fc-2{top:8%;right:4%;animation:fcFloat 4.5s ease-in-out infinite 0.7s;}
+  .fc-3{top:44%;left:1%;animation:fcFloat 3.8s ease-in-out infinite 1.4s;}
+  .fc-4{top:44%;right:1%;animation:fcFloat 4.2s ease-in-out infinite 2.1s;}
+  .fc-5{bottom:8%;left:4%;animation:fcFloat 4s ease-in-out infinite 0.3s;}
+  .fc-6{bottom:8%;right:4%;animation:fcFloat 4.5s ease-in-out infinite 1s;}
+  @keyframes fcFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
 
-  /* ═══════════ NAV ═══════════ */
-  nav {
-    position:fixed; top:0; width:100%; z-index:1000;
-    padding:0 5%; height:68px;
-    display:flex; justify-content:space-between; align-items:center;
-    background:rgba(249,250,251,0.92);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);
-    transition:box-shadow 0.3s;
-  }
-  nav.scrolled { box-shadow:0 4px 24px rgba(0,0,0,0.07); }
+  /* ── SECTIONS ── */
+  .section{padding:7rem 6%;position:relative;z-index:1;}
+  .sec-eye{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.58rem;font-weight:800;letter-spacing:0.35em;text-transform:uppercase;color:var(--navy);margin-bottom:0.8rem;}
+  .sec-eye::before{content:'';width:20px;height:2px;background:var(--navy);border-radius:2px;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1rem;}
+  .sec-title em{font-style:italic;color:var(--navy);}
+  .sec-sub{font-size:0.88rem;color:var(--muted-mid);max-width:500px;margin:0 auto;}
 
-  .logo {
-    font-size:1.15rem; font-weight:800; color:var(--ink);
-    text-decoration:none; letter-spacing:-0.5px;
-    display:flex; align-items:center; gap:0.45rem;
-  }
-  .logo-pulse {
-    width:8px; height:8px; border-radius:50%;
-    background:var(--navy);
-    animation:logoPulse 2.5s ease-in-out infinite;
-  }
-  @keyframes logoPulse {
-    0%,100%{box-shadow:0 0 0 2px rgba(30,58,95,0.2);}
-    50%{box-shadow:0 0 0 6px rgba(30,58,95,0.08),0 0 14px rgba(30,58,95,0.15);}
-  }
-  .logo em { font-family:'Manrope',sans-serif; font-style:normal; color:var(--navy); font-weight:800; }
+  /* ── ABOUT ── */
+  .about-sec{background:var(--surface);}
+  .about-inner{max-width:1100px;margin:0 auto;}
+  .about-header{margin-bottom:4rem;}
+  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:start;}
+  .about-copy p{font-size:0.88rem;line-height:2;color:var(--muted-mid);margin-bottom:1.4rem;}
+  .about-copy strong{color:var(--ink);font-weight:700;}
+  .about-copy .accent{color:var(--navy);font-weight:700;}
+  .about-sidebar{display:flex;flex-direction:column;gap:1rem;}
+  .sidebar-card{background:var(--bg);border:1.5px solid var(--border);border-left:3px solid var(--navy);border-radius:10px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:all 0.3s;}
+  .sidebar-card:hover{transform:translateX(5px);box-shadow:0 6px 24px rgba(30,58,95,0.08);}
+  .sc-icon{font-size:1.4rem;flex-shrink:0;}
+  .sc-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+  .sc-text{font-size:0.72rem;color:var(--muted-mid);line-height:1.75;}
 
-  .nav-links {
-    display:flex; gap:0.3rem; align-items:center;
-    position:absolute; left:50%; transform:translateX(-50%);
-  }
-  .nav-links a {
-    font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
-    color:var(--muted-mid); text-decoration:none;
-    padding:0.5rem 0.9rem; border-radius:6px;
-    transition:all 0.2s;
-  }
-  .nav-links a:hover { color:var(--navy); background:var(--navy-dim); }
-  .nav-cta-wrapper { display:flex; align-items:center; }
-  .nav-cta {
-    background:var(--ink) !important; color:#fff !important;
-    padding:0.5rem 1.3rem !important; border-radius:50px !important;
-    font-weight:800 !important; font-size:0.8rem !important;
-    text-transform:uppercase !important; letter-spacing:0.1em !important;
-    text-decoration:none !important; transition:all 0.2s !important;
-    white-space:nowrap;
-  }
-  .nav-cta:hover { background:var(--navy) !important; box-shadow:0 4px 18px rgba(30,58,95,0.25) !important; transform:translateY(-1px); }
+  /* ── MILESTONES ── */
+  .milestones-sec{background:var(--bg);}
+  .milestones-inner{max-width:1100px;margin:0 auto;}
+  .tab-shell{max-width:760px;margin:3.5rem auto 0;}
+  .year-tabs{display:flex;justify-content:center;gap:0.8rem;margin-bottom:3rem;flex-wrap:wrap;}
+  .tab-btn{background:var(--surface);border:1.5px solid var(--border);padding:0.65rem 1.8rem;border-radius:50px;font-family:'Manrope',sans-serif;font-weight:800;font-size:0.88rem;color:var(--muted-mid);cursor:pointer;transition:all 0.25s;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+  .tab-btn:hover:not(.active){border-color:var(--navy);color:var(--navy);transform:translateY(-2px);}
+  .tab-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 6px 20px rgba(30,58,95,0.25);transform:translateY(-1px);}
+  .tab-content{position:relative;min-height:220px;}
+  .tab-pane{display:none;animation:slideUp 0.45s ease both;}
+  .tab-pane.active{display:block;}
+  @keyframes slideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  .ach-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.8rem 2rem;margin-bottom:1.2rem;display:flex;gap:1.4rem;align-items:flex-start;transition:all 0.3s;position:relative;overflow:hidden;}
+  .ach-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--navy);transform:scaleY(0);transform-origin:top;transition:transform 0.35s ease;}
+  .ach-item:hover::before{transform:scaleY(1);}
+  .ach-item:hover{border-color:var(--navy-border);transform:translateX(4px);box-shadow:0 6px 24px rgba(30,58,95,0.07);}
+  .ach-icon{font-size:1.8rem;flex-shrink:0;}
+  .ach-badge{display:inline-block;font-size:0.52rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--navy);background:var(--navy-dim);border:1px solid var(--navy-border);padding:0.2rem 0.65rem;border-radius:50px;margin-bottom:0.5rem;}
+  .ach-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:0.4rem;}
+  .ach-desc{font-size:0.78rem;color:var(--muted-mid);line-height:1.8;}
+  .loading-state{text-align:center;padding:3rem 2rem;}
+  .spinner{width:44px;height:44px;border-radius:50%;border:3px solid var(--navy-pale);border-top-color:var(--navy);animation:spin 0.9s linear infinite;margin:0 auto 1.5rem;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading-state h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:0.6rem;}
+  .loading-state p{font-size:0.8rem;color:var(--muted-mid);line-height:1.8;}
 
-  /* ═══════════ HERO — FULL WIDTH ═══════════ */
-  .hero {
-    min-height:100vh;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    padding-top:68px;
-    position:relative; z-index:1;
-    overflow:hidden;
-  }
+  /* ── PROJECTS ── */
+  .projects-sec{background:var(--surface);}
+  .projects-inner{max-width:1100px;margin:0 auto;}
+  .bento{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:auto auto;gap:1.2rem;margin-top:4rem;}
+  .bcard{background:var(--bg);border:1.5px solid var(--border);border-radius:18px;padding:2.5rem;transition:all 0.3s;position:relative;overflow:hidden;}
+  .bcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--navy-mid));transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
+  .bcard:hover::before{transform:scaleX(1);}
+  .bcard:hover{border-color:var(--navy-border);transform:translateY(-4px);box-shadow:0 16px 40px rgba(30,58,95,0.1);}
+  .bcard.span2{grid-column:span 2;}
+  .bcard.dark{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .bcard.dark:hover{background:var(--ink);}
+  .bcard.light-accent{background:var(--bg-alt);border-color:rgba(30,58,95,0.12);}
+  .b-tag{display:inline-block;font-size:0.58rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy);background:var(--navy-dim);border:1px solid var(--navy-border);padding:0.3rem 0.8rem;border-radius:50px;margin-bottom:1.2rem;}
+  .bcard.dark .b-tag{color:#93C5FD;background:rgba(147,197,253,0.1);border-color:rgba(147,197,253,0.2);}
+  .b-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:var(--ink);margin-bottom:0.8rem;line-height:1.2;letter-spacing:-0.01em;}
+  .bcard.dark .b-title{color:#fff;}
+  .b-desc{font-size:0.78rem;color:var(--muted-mid);line-height:1.85;}
+  .bcard.dark .b-desc{color:rgba(255,255,255,0.6);}
+  .bcard.light-accent .b-desc{color:var(--muted);}
+  .b-link{display:inline-flex;align-items:center;gap:0.6rem;margin-top:2rem;background:var(--surface);color:var(--navy);padding:0.75rem 1.6rem;border-radius:50px;font-weight:800;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--navy-border);transition:all 0.25s;}
+  .b-link:hover{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-1px);box-shadow:0 6px 16px rgba(30,58,95,0.2);}
+  .b-stack{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.2rem;}
+  .b-stag{font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted-mid);border:1px solid var(--border);padding:0.25rem 0.7rem;border-radius:6px;}
 
-  /* Left panel */
-  .hero-left {
-    padding:5rem 5% 5rem 6%;
-    display:flex; flex-direction:column; justify-content:center;
-    position:relative;
-  }
+  /* ── PHILOSOPHY ── */
+  .philosophy-sec{background:var(--navy);padding:7rem 6%;position:relative;z-index:1;overflow:hidden;}
+  .philosophy-sec::before{content:'"';position:absolute;top:-2rem;right:3rem;font-family:'Playfair Display',serif;font-size:24rem;font-weight:800;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;}
+  .phil-inner{max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+  .phil-eye{display:inline-flex;align-items:center;gap:0.7rem;font-size:0.6rem;font-weight:800;letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:2.5rem;}
+  .phil-eye::before,.phil-eye::after{content:'';width:20px;height:1px;background:rgba(255,255,255,0.2);}
+  .phil-quote{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-style:italic;font-weight:600;color:#fff;line-height:1.65;margin-bottom:2.5rem;}
+  .phil-author{display:inline-flex;align-items:center;gap:1rem;font-size:0.65rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+  .phil-author::before,.phil-author::after{content:'';width:30px;height:1px;background:rgba(255,255,255,0.18);}
 
-  /* Right panel — transparent, blends with hero */
-  .hero-right {
-    background:transparent;
-    display:flex; align-items:center; justify-content:center;
-    position:relative; overflow:hidden;
-  }
+  /* ── CONTACT ── */
+  .contact-sec{background:var(--ink);padding:8rem 6%;position:relative;z-index:1;overflow:hidden;}
+  .contact-sec::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(30,58,95,0.25) 0%,transparent 70%);pointer-events:none;}
+  .contact-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;position:relative;z-index:1;}
+  .contact-eye{font-size:0.6rem;font-weight:800;letter-spacing:0.35em;text-transform:uppercase;color:#93C5FD;margin-bottom:1rem;display:flex;align-items:center;gap:0.7rem;}
+  .contact-eye::before{content:'';width:20px;height:1.5px;background:#93C5FD;border-radius:2px;}
+  .contact-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:1.5rem;letter-spacing:-0.02em;}
+  .contact-title em{font-style:italic;color:#93C5FD;}
+  .contact-copy{font-size:0.87rem;line-height:2;color:rgba(255,255,255,0.35);margin-bottom:2.5rem;}
+  .contact-email{display:inline-flex;align-items:center;gap:0.8rem;font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:#93C5FD;text-decoration:none;border-bottom:1px solid rgba(147,197,253,0.3);padding-bottom:0.4rem;transition:all 0.3s;word-break:break-all;}
+  .contact-email:hover{color:#fff;border-color:rgba(255,255,255,0.4);}
+  .contact-channels{display:flex;flex-direction:column;gap:1rem;}
+  .c-ch{display:flex;align-items:center;gap:1.2rem;padding:1.4rem;border:1px solid rgba(255,255,255,0.07);border-radius:12px;text-decoration:none;transition:all 0.3s;}
+  .c-ch:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.14);transform:translateX(5px);}
+  .c-icon{font-size:1.3rem;}
+  .c-lbl{font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.2rem;}
+  .c-val{font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.8);}
 
-  /* Background orbs on left */
-  .orb {
-    position:absolute; border-radius:50%;
-    filter:blur(70px); pointer-events:none; z-index:0;
-  }
-  .orb-1 { top:10%; left:-10%; width:400px; height:400px; background:radial-gradient(circle,#BFDBFE,transparent 70%); opacity:0.6; animation:orbDrift 14s ease-in-out infinite; }
-  .orb-2 { bottom:-5%; left:30%; width:300px; height:300px; background:radial-gradient(circle,#DBEAFE,transparent 70%); opacity:0.5; animation:orbDrift 18s ease-in-out infinite reverse; }
-  @keyframes orbDrift {
-    0%,100%{transform:translate(0,0);}
-    50%{transform:translate(20px,-25px);}
-  }
+  /* ── FOOTER ── */
+  footer{background:rgba(0,0,0,0.35);padding:2rem 6%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.06);position:relative;z-index:1;}
+  .footer-logo{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:800;color:rgba(255,255,255,0.7);}
+  .footer-logo em{font-style:normal;color:#93C5FD;}
+  .footer-copy{font-size:0.6rem;color:rgba(255,255,255,0.22);letter-spacing:0.1em;}
+  .footer-links{display:flex;gap:2rem;list-style:none;}
+  .footer-links a{font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.3s;}
+  .footer-links a:hover{color:#93C5FD;}
 
-  /* Hero left content */
-  .hero-badge {
-    display:inline-flex; align-items:center; gap:0.7rem;
-    background:var(--surface); border:1px solid var(--navy-border);
-    border-radius:50px; padding:0.4rem 1.1rem;
-    margin-bottom:2.2rem;
-    box-shadow:0 2px 12px rgba(30,58,95,0.08);
-    animation:fadeUp 0.8s ease both;
-    width:fit-content;
-  }
-  .badge-dot { width:7px; height:7px; border-radius:50%; background:var(--navy-mid); animation:logoPulse 2s infinite; }
-  .badge-text { font-size:0.6rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--navy); }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1);}
+  .reveal.active{opacity:1;transform:translateY(0);}
+  .reveal-l{opacity:0;transform:translateX(-26px);transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1);}
+  .reveal-l.active{opacity:1;transform:translateX(0);}
+  .reveal-r{opacity:0;transform:translateX(26px);transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1);}
+  .reveal-r.active{opacity:1;transform:translateX(0);}
+  .d1{transition-delay:.08s;}.d2{transition-delay:.18s;}.d3{transition-delay:.28s;}.d4{transition-delay:.38s;}
 
-  h1.hero-name {
-    font-family:'Playfair Display',serif;
-    font-size:clamp(2.8rem,4.5vw,5rem);
-    font-weight:800; line-height:1.0; letter-spacing:-0.02em;
-    color:var(--ink); margin-bottom:0.5rem;
-    animation:fadeUp 0.8s 0.08s ease both;
-  }
-  h1.hero-name em {
-    font-style:italic;
-    color:var(--navy);
-    animation:breathe 3.5s ease-in-out infinite;
-  }
-  @keyframes breathe {
-    0%,100% { color:var(--navy); }
-    50%      { color:#93C5FD; }
-  }
+  /* ════════════════════════════════════════
+     MOBILE — 768px and below
+  ════════════════════════════════════════ */
+  @media (max-width:768px) {
 
-  .hero-typed {
-    font-size:clamp(0.9rem,1.5vw,1.15rem); font-weight:600;
-    color:var(--muted-mid); margin-bottom:2rem; min-height:2em;
-    animation:fadeUp 0.8s 0.16s ease both;
-  }
-  .typed-cursor {
-    display:inline-block; width:2px; height:1em;
-    background:var(--navy); margin-left:2px;
-    vertical-align:middle; animation:blink 0.9s step-end infinite;
-  }
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    /* Nav */
+    nav { height:60px; padding:0 5%; }
+    .nav-links { display:none; }
 
-  .hero-bio {
-    font-size:0.88rem; line-height:2; color:var(--muted-mid);
-    max-width:470px; margin-bottom:2.5rem;
-    animation:fadeUp 0.8s 0.24s ease both;
-  }
-  .hero-bio strong { color:var(--ink); font-weight:700; }
-  .hero-bio .accent { color:var(--navy); font-weight:700; }
-
-  .hero-btns {
-    display:flex; gap:1rem; align-items:center; flex-wrap:wrap;
-    margin-bottom:3.5rem;
-    animation:fadeUp 0.8s 0.32s ease both;
-  }
-  .btn-primary {
-    display:inline-flex; align-items:center; gap:0.6rem;
-    background:var(--ink); color:#fff;
-    padding:0.95rem 2.2rem; border-radius:50px;
-    font-weight:800; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s;
-    box-shadow:0 4px 18px rgba(17,24,39,0.2);
-  }
-  .btn-primary:hover { background:var(--navy); transform:translateY(-2px); box-shadow:0 10px 28px rgba(30,58,95,0.25); }
-  .btn-ghost {
-    display:inline-flex; align-items:center; gap:0.6rem;
-    border:2px solid var(--navy-border); color:var(--navy);
-    padding:0.95rem 2.2rem; border-radius:50px;
-    font-weight:800; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s;
-  }
-  .btn-ghost:hover { background:var(--navy-dim); border-color:var(--navy); }
-
-  /* Stats */
-  .hero-stats {
-    display:flex; border-top:1px solid var(--border);
-    animation:fadeUp 0.8s 0.4s ease both;
-  }
-  .hstat {
-    flex:1; padding:1.4rem 0 0; border-right:1px solid var(--border);
-    padding-right:2rem; transition:all 0.3s;
-  }
-  .hstat:last-child { border-right:none; }
-  .hstat:hover { background:var(--bg-alt); border-radius:0 0 10px 10px; }
-  .hstat-num { font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:800; color:var(--navy); line-height:1; margin-bottom:0.3rem; }
-  .hstat-label { font-size:0.58rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted-light); }
-
-  /* ═══════════ BIODATA VISUAL — right panel ═══════════ */
-  .biodata-visual {
-    position:relative; z-index:1;
-    width:100%; height:100%;
-    display:flex; align-items:center; justify-content:center;
-    padding:5rem 3rem;
-  }
-
-  /* Photo — no frame, just the image */
-  .portrait {
-    position:relative; z-index:10;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .portrait img {
-    width:320px;
-    object-fit:contain;
-    filter:drop-shadow(0 20px 40px rgba(30,58,95,0.15));
-    animation:fadeIn 1s 0.3s ease both;
-  }
-  /* Placeholder shown before photo is added */
-  .portrait-placeholder {
-    width:240px; height:340px;
-    border:2px dashed var(--navy-border);
-    border-radius:16px;
-    display:flex; align-items:center; justify-content:center;
-    flex-direction:column; gap:0.5rem;
-    color:var(--muted-light);
-    font-size:0.75rem; font-weight:600;
-  }
-
-  /* Floating bio cards */
-  .fc {
-    position:absolute; z-index:20;
-    background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,0.9);
-    border-radius:14px; padding:0.85rem 1.1rem;
-    box-shadow:0 8px 28px rgba(30,58,95,0.1), 0 2px 8px rgba(0,0,0,0.04);
-    white-space:nowrap;
-  }
-  .fc-label { font-size:0.55rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--navy-mid); margin-bottom:0.22rem; }
-  .fc-value { font-size:0.88rem; font-weight:800; color:var(--ink); }
-  .fc-sub { font-size:0.6rem; color:var(--muted-light); margin-top:0.1rem; font-weight:500; }
-
-  .fc-1 { top:8%;  left:4%;  animation:fcFloat 4s   ease-in-out infinite 0s; }
-  .fc-2 { top:8%;  right:4%; animation:fcFloat 4.5s ease-in-out infinite 0.7s; }
-  .fc-3 { top:44%; left:1%;  animation:fcFloat 3.8s ease-in-out infinite 1.4s; }
-  .fc-4 { top:44%; right:1%; animation:fcFloat 4.2s ease-in-out infinite 2.1s; }
-  .fc-5 { bottom:8%; left:4%;  animation:fcFloat 4s ease-in-out infinite 0.3s; }
-  .fc-6 { bottom:8%; right:4%; animation:fcFloat 4.5s ease-in-out infinite 1s; }
-
-  @keyframes fcFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);} }
-
-  /* ═══════════ SECTIONS ═══════════ */
-  .section { padding:7rem 6%; position:relative; z-index:1; }
-
-  .sec-eye {
-    display:inline-flex; align-items:center; gap:0.8rem;
-    font-size:0.58rem; font-weight:800; letter-spacing:0.35em; text-transform:uppercase;
-    color:var(--navy); margin-bottom:0.8rem;
-  }
-  .sec-eye::before { content:''; width:20px; height:2px; background:var(--navy); border-radius:2px; }
-  .sec-title {
-    font-family:'Playfair Display',serif;
-    font-size:clamp(2rem,3vw,3rem); font-weight:800; line-height:1.1;
-    letter-spacing:-0.02em; color:var(--ink); margin-bottom:1rem;
-  }
-  .sec-title em { font-style:italic; color:var(--navy); }
-  .sec-sub { font-size:0.88rem; color:var(--muted-mid); max-width:500px; margin:0 auto; }
-
-  /* ═══════════ ABOUT ═══════════ */
-  .about-sec { background:var(--surface); }
-  .about-inner { max-width:1100px; margin:0 auto; }
-  .about-header { margin-bottom:4rem; }
-  .about-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:6rem; align-items:start; }
-
-  .about-copy p { font-size:0.88rem; line-height:2; color:var(--muted-mid); margin-bottom:1.4rem; }
-  .about-copy strong { color:var(--ink); font-weight:700; }
-  .about-copy .accent { color:var(--navy); font-weight:700; }
-
-  .about-sidebar { display:flex; flex-direction:column; gap:1rem; }
-  .sidebar-card {
-    background:var(--bg); border:1.5px solid var(--border);
-    border-left:3px solid var(--navy);
-    border-radius:10px; padding:1.5rem;
-    display:flex; gap:1rem; align-items:flex-start;
-    transition:all 0.3s;
-  }
-  .sidebar-card:hover { transform:translateX(5px); box-shadow:0 6px 24px rgba(30,58,95,0.08); border-color:var(--navy-border); }
-  .sc-icon { font-size:1.4rem; flex-shrink:0; }
-  .sc-title { font-family:'Playfair Display',serif; font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:0.3rem; }
-  .sc-text { font-size:0.72rem; color:var(--muted-mid); line-height:1.75; }
-
-  /* ═══════════ MILESTONES ═══════════ */
-  .milestones-sec { background:var(--bg); }
-  .milestones-inner { max-width:1100px; margin:0 auto; }
-  .tab-shell { max-width:760px; margin:3.5rem auto 0; }
-
-  .year-tabs { display:flex; justify-content:center; gap:0.8rem; margin-bottom:3rem; flex-wrap:wrap; }
-  .tab-btn {
-    background:var(--surface); border:1.5px solid var(--border);
-    padding:0.65rem 1.8rem; border-radius:50px;
-    font-family:'Manrope',sans-serif; font-weight:800; font-size:0.88rem;
-    color:var(--muted-mid); cursor:pointer; transition:all 0.25s;
-    box-shadow:0 2px 8px rgba(0,0,0,0.04);
-  }
-  .tab-btn:hover:not(.active) { border-color:var(--navy); color:var(--navy); transform:translateY(-2px); }
-  .tab-btn.active {
-    background:var(--navy); color:#fff; border-color:var(--navy);
-    box-shadow:0 6px 20px rgba(30,58,95,0.25); transform:translateY(-1px);
-  }
-
-  .tab-content { position:relative; min-height:220px; }
-  .tab-pane { display:none; animation:slideUp 0.45s ease both; }
-  .tab-pane.active { display:block; }
-  @keyframes slideUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-
-  .ach-item {
-    background:var(--surface); border:1px solid var(--border);
-    border-radius:14px; padding:1.8rem 2rem;
-    margin-bottom:1.2rem; display:flex; gap:1.4rem; align-items:flex-start;
-    transition:all 0.3s; position:relative; overflow:hidden;
-  }
-  .ach-item::before {
-    content:''; position:absolute; left:0; top:0; bottom:0;
-    width:3px; background:var(--navy);
-    transform:scaleY(0); transform-origin:top; transition:transform 0.35s ease;
-  }
-  .ach-item:hover::before { transform:scaleY(1); }
-  .ach-item:hover { border-color:var(--navy-border); transform:translateX(4px); box-shadow:0 6px 24px rgba(30,58,95,0.07); }
-  .ach-icon { font-size:1.8rem; flex-shrink:0; }
-  .ach-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:0.4rem; }
-  .ach-desc { font-size:0.78rem; color:var(--muted-mid); line-height:1.8; }
-  .ach-badge {
-    display:inline-block; font-size:0.52rem; font-weight:800;
-    letter-spacing:0.15em; text-transform:uppercase;
-    color:var(--navy); background:var(--navy-dim);
-    border:1px solid var(--navy-border);
-    padding:0.2rem 0.65rem; border-radius:50px;
-    margin-bottom:0.5rem;
-  }
-
-  .loading-state { text-align:center; padding:3rem 2rem; }
-  .spinner { width:44px; height:44px; border-radius:50%; border:3px solid var(--navy-pale); border-top-color:var(--navy); animation:spin 0.9s linear infinite; margin:0 auto 1.5rem; }
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .loading-state h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--ink); margin-bottom:0.6rem; }
-  .loading-state p { font-size:0.8rem; color:var(--muted-mid); line-height:1.8; }
-
-  /* ═══════════ PROJECTS — BENTO ═══════════ */
-  .projects-sec { background:var(--surface); }
-  .projects-inner { max-width:1100px; margin:0 auto; }
-  .bento { display:grid; grid-template-columns:1.6fr 1fr 1fr; grid-template-rows:auto auto; gap:1.2rem; margin-top:4rem; }
-
-  .bcard {
-    background:var(--bg); border:1.5px solid var(--border);
-    border-radius:18px; padding:2.5rem;
-    transition:all 0.3s; position:relative; overflow:hidden;
-  }
-  .bcard::before {
-    content:''; position:absolute; top:0; left:0; right:0;
-    height:3px; background:linear-gradient(90deg,var(--navy),var(--navy-mid));
-    transform:scaleX(0); transform-origin:left; transition:transform 0.4s ease;
-  }
-  .bcard:hover::before { transform:scaleX(1); }
-  .bcard:hover { border-color:var(--navy-border); transform:translateY(-4px); box-shadow:0 16px 40px rgba(30,58,95,0.1); }
-  .bcard.span2 { grid-column:span 2; }
-  .bcard.dark { background:var(--navy); color:#fff; border-color:var(--navy); }
-  .bcard.dark:hover { background:var(--ink); }
-  .bcard.light-accent { background:var(--bg-alt); border-color:rgba(30,58,95,0.12); }
-
-  .b-tag {
-    display:inline-block; font-size:0.58rem; font-weight:800;
-    letter-spacing:0.2em; text-transform:uppercase;
-    color:var(--navy); background:var(--navy-dim);
-    border:1px solid var(--navy-border);
-    padding:0.3rem 0.8rem; border-radius:50px; margin-bottom:1.2rem;
-  }
-  .bcard.dark .b-tag { color:#93C5FD; background:rgba(147,197,253,0.1); border-color:rgba(147,197,253,0.2); }
-  .bcard.light-accent .b-tag { color:var(--navy); }
-
-  .b-title {
-    font-family:'Playfair Display',serif;
-    font-size:1.4rem; font-weight:800; color:var(--ink);
-    margin-bottom:0.8rem; line-height:1.2; letter-spacing:-0.01em;
-  }
-  .bcard.dark .b-title { color:#fff; }
-  .b-desc { font-size:0.78rem; color:var(--muted-mid); line-height:1.85; }
-  .bcard.dark .b-desc { color:rgba(255,255,255,0.6); }
-  .bcard.light-accent .b-desc { color:var(--muted); }
-
-  .b-link {
-    display:inline-flex; align-items:center; gap:0.6rem;
-    margin-top:2rem; background:var(--surface); color:var(--navy);
-    padding:0.75rem 1.6rem; border-radius:50px;
-    font-weight:800; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase;
-    text-decoration:none; border:1.5px solid var(--navy-border);
-    transition:all 0.25s;
-  }
-  .b-link:hover { background:var(--navy); color:#fff; border-color:var(--navy); transform:translateY(-1px); box-shadow:0 6px 16px rgba(30,58,95,0.2); }
-
-  .b-stack { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.2rem; }
-  .b-stag {
-    font-size:0.58rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--muted-mid); border:1px solid var(--border);
-    padding:0.25rem 0.7rem; border-radius:6px;
-  }
-
-  /* ═══════════ PHILOSOPHY ═══════════ */
-  .philosophy-sec { background:var(--navy); padding:7rem 6%; position:relative; z-index:1; overflow:hidden; }
-  .philosophy-sec::before {
-    content:'"'; position:absolute; top:-2rem; right:3rem;
-    font-family:'Playfair Display',serif; font-size:24rem; font-weight:800;
-    color:rgba(255,255,255,0.04); line-height:1; pointer-events:none;
-  }
-  .phil-inner { max-width:860px; margin:0 auto; text-align:center; position:relative; z-index:1; }
-  .phil-eye {
-    display:inline-flex; align-items:center; gap:0.7rem;
-    font-size:0.6rem; font-weight:800; letter-spacing:0.35em; text-transform:uppercase;
-    color:rgba(255,255,255,0.4); margin-bottom:2.5rem;
-  }
-  .phil-eye::before,.phil-eye::after { content:''; width:20px; height:1px; background:rgba(255,255,255,0.2); }
-  .phil-quote {
-    font-family:'Playfair Display',serif;
-    font-size:clamp(1.4rem,3vw,2.2rem); font-style:italic; font-weight:600;
-    color:#fff; line-height:1.65; margin-bottom:2.5rem;
-  }
-  .phil-author {
-    display:inline-flex; align-items:center; gap:1rem;
-    font-size:0.65rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase;
-    color:rgba(255,255,255,0.4);
-  }
-  .phil-author::before,.phil-author::after { content:''; width:30px; height:1px; background:rgba(255,255,255,0.18); }
-
-  /* ═══════════ CONTACT ═══════════ */
-  .contact-sec { background:var(--ink); padding:8rem 6%; position:relative; z-index:1; overflow:hidden; }
-  .contact-sec::before {
-    content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%);
-    width:800px; height:400px; border-radius:50%;
-    background:radial-gradient(circle, rgba(30,58,95,0.25) 0%, transparent 70%);
-    pointer-events:none;
-  }
-  .contact-inner { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; position:relative; z-index:1; }
-  .contact-eye { font-size:0.6rem; font-weight:800; letter-spacing:0.35em; text-transform:uppercase; color:#93C5FD; margin-bottom:1rem; display:flex; align-items:center; gap:0.7rem; }
-  .contact-eye::before { content:''; width:20px; height:1.5px; background:#93C5FD; border-radius:2px; }
-  .contact-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:1.5rem; letter-spacing:-0.02em; }
-  .contact-title em { font-style:italic; color:#93C5FD; }
-  .contact-copy { font-size:0.87rem; line-height:2; color:rgba(255,255,255,0.35); margin-bottom:2.5rem; }
-  .contact-email { display:inline-flex; align-items:center; gap:0.8rem; font-family:'Playfair Display',serif; font-size:1.1rem; font-style:italic; color:#93C5FD; text-decoration:none; border-bottom:1px solid rgba(147,197,253,0.3); padding-bottom:0.4rem; transition:all 0.3s; }
-  .contact-email:hover { color:#fff; border-color:rgba(255,255,255,0.4); }
-
-  .contact-channels { display:flex; flex-direction:column; gap:1rem; }
-  .c-ch { display:flex; align-items:center; gap:1.2rem; padding:1.4rem; border:1px solid rgba(255,255,255,0.07); border-radius:12px; text-decoration:none; transition:all 0.3s; }
-  .c-ch:hover { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.14); transform:translateX(5px); }
-  .c-icon { font-size:1.3rem; }
-  .c-lbl { font-size:0.58rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:0.2rem; }
-  .c-val { font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.8); }
-
-  /* ═══════════ FOOTER ═══════════ */
-  footer { background:rgba(0,0,0,0.35); padding:2rem 6%; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.06); position:relative; z-index:1; }
-  .footer-logo { font-family:'Manrope',sans-serif; font-size:1rem; font-weight:800; color:rgba(255,255,255,0.7); }
-  .footer-logo em { font-style:normal; color:#93C5FD; }
-  .footer-copy { font-size:0.6rem; color:rgba(255,255,255,0.22); letter-spacing:0.1em; }
-  .footer-links { display:flex; gap:2rem; list-style:none; }
-  .footer-links a { font-size:0.6rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.28); text-decoration:none; transition:color 0.3s; }
-  .footer-links a:hover { color:#93C5FD; }
-
-  /* ═══════════ SCROLL ANIMATIONS ═══════════ */
-  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
-
-  .reveal { opacity:0; transform:translateY(26px); transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1); }
-  .reveal.active { opacity:1; transform:translateY(0); }
-  .reveal-l { opacity:0; transform:translateX(-26px); transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1); }
-  .reveal-l.active { opacity:1; transform:translateX(0); }
-  .reveal-r { opacity:0; transform:translateX(26px); transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1); }
-  .reveal-r.active { opacity:1; transform:translateX(0); }
-  .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}
-
-  /* ═══════════ MOBILE RESPONSIVE ═══════════ */
-  @media (max-width: 768px) {
-
-    /* ── NAV ── */
-    nav {
-      padding: 0 5%;
-      height: 60px;
-    }
-    .nav-links {
-      display: none; /* hide centre links on mobile */
-    }
-    /* Show only the CEFR button on the right */
-    .nav-cta-wrapper {
-      display: flex;
-    }
-
-    /* ── HERO ── */
+    /* Hero — single column, right panel hidden */
     .hero {
-      grid-template-columns: 1fr;
-      min-height: auto;
-      padding-top: 60px;
+      grid-template-columns:1fr;
+      min-height:auto;
+      padding-top:60px;
     }
-
-    /* Hide the entire right panel (floating cards + photo area) */
-    .hero-right {
-      display: none;
-    }
-
+    .hero-right { display:none; }
     .hero-left {
-      padding: 3rem 6% 3.5rem;
-      text-align: center;
-      align-items: center;
+      padding:3rem 6% 3rem;
+      align-items:center;
+      text-align:center;
     }
+    h1.hero-name { font-size:clamp(2.4rem,10vw,3.2rem); }
+    .hero-bio { max-width:100%; text-align:left; font-size:0.92rem; }
+    .hero-btns { justify-content:center; }
+    .hero-stats { width:100%; }
+    .hstat { padding:1.2rem 0 0; padding-right:0; text-align:center; }
+    .hstat-num { font-size:1.5rem; }
 
-    .hero-badge {
-      margin-left: auto;
-      margin-right: auto;
-    }
+    /* Sections */
+    .section { padding:4rem 5%; }
+    .sec-title { font-size:clamp(1.7rem,7vw,2.4rem); }
 
-    h1.hero-name {
-      font-size: clamp(2.4rem, 10vw, 3.2rem);
-    }
+    /* About */
+    .about-grid { grid-template-columns:1fr; gap:2.5rem; }
 
-    .hero-bio {
-      font-size: 0.9rem;
-      max-width: 100%;
-      text-align: left;
-    }
-
-    .hero-btns {
-      justify-content: center;
-    }
-
-    .hero-stats {
-      width: 100%;
-      gap: 0;
-    }
-    .hstat {
-      padding: 1.2rem 0 0;
-      padding-right: 0;
-      text-align: center;
-      border-right: 1px solid var(--border);
-      flex: 1;
-    }
-    .hstat:last-child { border-right: none; }
-    .hstat-num { font-size: 1.5rem; }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    .section {
-      padding: 4.5rem 5%;
-    }
-
-    .sec-title {
-      font-size: clamp(1.8rem, 7vw, 2.5rem);
-    }
-
-    /* ── MILESTONES ── */
-    .year-tabs {
-      gap: 0.5rem;
-    }
-    .tab-btn {
-      padding: 0.55rem 1.1rem;
-      font-size: 0.8rem;
-    }
+    /* Milestones */
+    .year-tabs { gap:0.5rem; }
+    .tab-btn { padding:0.55rem 1.1rem; font-size:0.8rem; }
     .ach-item {
-      padding: 1.4rem 1.2rem;
-      flex-direction: column;
-      gap: 0.8rem;
+      padding:1.2rem;
+      flex-direction:row;
+      gap:1rem;
     }
-    .ach-icon { font-size: 1.5rem; }
+    .ach-icon { font-size:1.5rem; }
 
-    /* ── BENTO PROJECTS ── */
-    .bento {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
-    .bcard.span2 {
-      grid-column: span 1;
-    }
-    .bcard {
-      padding: 2rem 1.6rem;
-    }
+    /* Projects bento → single column */
+    .bento { grid-template-columns:1fr; gap:1rem; margin-top:2.5rem; }
+    .bcard.span2 { grid-column:span 1; }
+    .bcard { padding:1.8rem 1.5rem; }
 
-    /* ── PHILOSOPHY ── */
-    .philosophy-sec {
-      padding: 5rem 6%;
-    }
-    .philosophy-sec::before {
-      font-size: 14rem;
-      top: -1rem;
-      right: 1rem;
-    }
-    .phil-quote {
-      font-size: clamp(1.15rem, 5vw, 1.6rem);
-    }
+    /* Philosophy */
+    .philosophy-sec { padding:5rem 6%; }
+    .philosophy-sec::before { font-size:12rem; }
+    .phil-quote { font-size:clamp(1.1rem,5vw,1.55rem); }
 
-    /* ── CONTACT ── */
-    .contact-sec {
-      padding: 5rem 5%;
-    }
-    .contact-inner {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-    .contact-title {
-      font-size: clamp(1.8rem, 8vw, 2.5rem);
-    }
-    .contact-email {
-      font-size: 0.88rem;
-      word-break: break-all;
-    }
+    /* Contact */
+    .contact-sec { padding:5rem 5%; }
+    .contact-inner { grid-template-columns:1fr; gap:3rem; }
+    .contact-title { font-size:clamp(1.8rem,8vw,2.4rem); }
+    .contact-email { font-size:0.8rem; }
 
-    /* ── FOOTER ── */
-    footer {
-      flex-direction: column;
-      gap: 1rem;
-      text-align: center;
-      padding: 1.8rem 5%;
-    }
-    .footer-links {
-      gap: 1.2rem;
-    }
+    /* Footer */
+    footer { flex-direction:column; gap:1rem; text-align:center; padding:1.8rem 5%; }
+    .footer-links { gap:1.2rem; }
   }
 
-  /* Extra small phones */
-  @media (max-width: 400px) {
-    h1.hero-name {
-      font-size: 2.2rem;
-    }
-    .tab-btn {
-      padding: 0.5rem 0.9rem;
-      font-size: 0.75rem;
-    }
-    .hstat-num { font-size: 1.3rem; }
+  @media (max-width:400px) {
+    h1.hero-name { font-size:2.1rem; }
+    .tab-btn { padding:0.5rem 0.85rem; font-size:0.72rem; }
+    .hstat-num { font-size:1.3rem; }
+    .nav-cta { font-size:0.7rem; padding:0.45rem 1rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav id="main-nav">
   <a href="#" class="logo">
     <span class="logo-pulse"></span>
-    MrReyy<em style="letter-spacing:0">.com</em>
+    MrReyy<em>.com</em>
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
@@ -670,38 +287,29 @@
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
-  <div class="nav-cta-wrapper">
-    <a href="https://cefr-lesson-planner-production.up.railway.app/" class="nav-cta">CEFR Planner</a>
-  </div>
+  <a href="https://cefr-lesson-planner-production.up.railway.app/" class="nav-cta" target="_blank" rel="noopener">CEFR Planner</a>
 </nav>
 
-<!-- ═══ HERO — FULL WIDTH SPLIT ═══ -->
+<!-- HERO -->
 <section class="hero" id="hero">
-
   <div class="hero-left">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-
     <div class="hero-badge">
       <span class="badge-dot"></span>
-      <span class="badge-text">🇲🇾 Malaysian Educator & Digital Innovator</span>
+      <span class="badge-text">🇲🇾 Malaysian Educator &amp; Digital Innovator</span>
     </div>
-
     <h1 class="hero-name">Hello, I'm<br><em>Mr Reyy.</em></h1>
-
     <p class="hero-typed"><span id="typed-el"></span><span class="typed-cursor"></span></p>
-
     <p class="hero-bio">
       An <strong>English language teacher</strong> from Malaysia, posted to Putrajaya since 2022.
       B.Ed TESL graduate with a passion for <span class="accent">digital innovation in education</span>.
       I build tools that give teachers back their time — because great classrooms deserve great tools.
     </p>
-
     <div class="hero-btns">
       <a href="#projects" class="btn-primary">Explore My Work ↓</a>
       <a href="#about" class="btn-ghost">Learn More</a>
     </div>
-
     <div class="hero-stats">
       <div class="hstat">
         <div class="hstat-num">4+</div>
@@ -718,53 +326,20 @@
     </div>
   </div>
 
-  <!-- Right panel — full height, bleeds to edge -->
   <div class="hero-right">
     <div class="biodata-visual">
-
-      <!-- 6 floating cards -->
-      <div class="fc fc-1">
-        <div class="fc-label">Qualification</div>
-        <div class="fc-value">B.Ed TESL</div>
-        <div class="fc-sub">IPG KBA, Kuala Lumpur</div>
-      </div>
-      <div class="fc fc-2">
-        <div class="fc-label">Framework</div>
-        <div class="fc-value">CEFR A1–C2</div>
-        <div class="fc-sub">Specialist</div>
-      </div>
-      <div class="fc fc-3">
-        <div class="fc-label">Posted At</div>
-        <div class="fc-value">🇲🇾 Putrajaya</div>
-        <div class="fc-sub">Since 2022</div>
-      </div>
-      <div class="fc fc-4">
-        <div class="fc-label">Certified</div>
-        <div class="fc-value">Google Educator</div>
-        <div class="fc-sub">Level 1 & 2</div>
-      </div>
-      <div class="fc fc-5">
-        <div class="fc-label">Latest App</div>
-        <div class="fc-value">CEFR Planner</div>
-        <div class="fc-sub">Live on Railway</div>
-      </div>
-      <div class="fc fc-6">
-        <div class="fc-label">Built With</div>
-        <div class="fc-value">AI + Code</div>
-        <div class="fc-sub">Claude & Gemini</div>
-      </div>
-
-      <!-- Portrait — upload photo.png to GitHub repo -->
-      <div class="portrait">
-        <img src="photo.png" alt="Mr Reyy">
-      </div>
-
+      <div class="fc fc-1"><div class="fc-label">Qualification</div><div class="fc-value">B.Ed TESL</div><div class="fc-sub">IPG KBA, Kuala Lumpur</div></div>
+      <div class="fc fc-2"><div class="fc-label">Framework</div><div class="fc-value">CEFR A1–C2</div><div class="fc-sub">Specialist</div></div>
+      <div class="fc fc-3"><div class="fc-label">Posted At</div><div class="fc-value">🇲🇾 Putrajaya</div><div class="fc-sub">Since 2022</div></div>
+      <div class="fc fc-4"><div class="fc-label">Certified</div><div class="fc-value">Google Educator</div><div class="fc-sub">Level 1 &amp; 2</div></div>
+      <div class="fc fc-5"><div class="fc-label">Latest App</div><div class="fc-value">CEFR Planner</div><div class="fc-sub">Live on Railway</div></div>
+      <div class="fc fc-6"><div class="fc-label">Built With</div><div class="fc-value">AI + Code</div><div class="fc-sub">Claude &amp; Gemini</div></div>
+      <div class="portrait"><img src="photo.png" alt="Mr Reyy"></div>
     </div>
   </div>
-
 </section>
 
-<!-- ═══ ABOUT ═══ -->
+<!-- ABOUT -->
 <section class="section about-sec" id="about">
   <div class="about-inner">
     <div class="about-header">
@@ -774,32 +349,20 @@
     <div class="about-grid">
       <div class="about-copy reveal-l">
         <p>I'm Mr Reyy — an English language teacher based in <strong>Putrajaya, Malaysia</strong>. I graduated with a <span class="accent">B.Ed TESL from IPG Kampus Bahasa Antarabangsa, Kuala Lumpur</span>, and began my teaching journey in 2022. Four years in, I'm still here — still learning, still growing, and still finding new ways to make every lesson count.</p>
-        <p>The story behind the <strong>CEFR Lesson Planner</strong> begins with a real problem. When UPSR was abolished and PBD (Pentaksiran Bilik Darjah) took its place, teachers were handed the freedom to choose their own materials and lesson designs. That freedom is powerful — but with it came an honest challenge: planning differentiated lessons for <span class="accent">Advanced, Intermediate, and Remedial learners</span>, all at once, every single day. I struggled with it. So instead of waiting for a solution to appear, I built one.</p>
-        <p>That first build proved something important to me: <strong>teachers can be makers</strong>. The tools we need don't always exist yet — and educators are often the best people to create them. Beyond the classroom, I'm a certified <span class="accent">Google Educator (Level 1 & 2)</span>, a national-level cricket coach, and someone who believes that reflection is what separates a good teacher from a great one.</p>
+        <p>The story behind the <strong>CEFR Lesson Planner</strong> begins with a real problem. When UPSR was abolished and PBD took its place, teachers were handed the freedom to choose their own materials and lesson designs. That freedom is powerful — but with it came an honest challenge: planning differentiated lessons for <span class="accent">Advanced, Intermediate, and Remedial learners</span>, all at once, every single day. I struggled with it. So instead of waiting for a solution to appear, I built one.</p>
+        <p>That first build proved something important to me: <strong>teachers can be makers</strong>. The tools we need don't always exist yet — and educators are often the best people to create them. Beyond the classroom, I'm a certified <span class="accent">Google Educator (Level 1 &amp; 2)</span>, a national-level cricket coach, and someone who believes that reflection is what separates a good teacher from a great one.</p>
       </div>
       <div class="about-sidebar reveal-r">
-        <div class="sidebar-card d1">
-          <span class="sc-icon">📚</span>
-          <div><div class="sc-title">English Language Teaching</div><div class="sc-text">Communication-first approach, building real confidence through the CEFR framework and differentiated instruction.</div></div>
-        </div>
-        <div class="sidebar-card d2">
-          <span class="sc-icon">⚙️</span>
-          <div><div class="sc-title">Digital Innovation</div><div class="sc-text">Building EdTech tools that solve problems I've personally faced — starting with the CEFR Lesson Planner.</div></div>
-        </div>
-        <div class="sidebar-card d3">
-          <span class="sc-icon">🏏</span>
-          <div><div class="sc-title">Leadership & Coaching</div><div class="sc-text">Head Coach of the Putrajaya U12 Cricket Team at national level — because leadership extends beyond the classroom.</div></div>
-        </div>
-        <div class="sidebar-card d4">
-          <span class="sc-icon">✍️</span>
-          <div><div class="sc-title">Sharing & Reflecting</div><div class="sc-text">Documenting what works, what doesn't, and what I'm learning along the way — building in public as an educator who builds.</div></div>
-        </div>
+        <div class="sidebar-card d1"><span class="sc-icon">📚</span><div><div class="sc-title">English Language Teaching</div><div class="sc-text">Communication-first approach, building real confidence through the CEFR framework and differentiated instruction.</div></div></div>
+        <div class="sidebar-card d2"><span class="sc-icon">⚙️</span><div><div class="sc-title">Digital Innovation</div><div class="sc-text">Building EdTech tools that solve problems I've personally faced — starting with the CEFR Lesson Planner.</div></div></div>
+        <div class="sidebar-card d3"><span class="sc-icon">🏏</span><div><div class="sc-title">Leadership &amp; Coaching</div><div class="sc-text">Head Coach of the Putrajaya U12 Cricket Team at national level — because leadership extends beyond the classroom.</div></div></div>
+        <div class="sidebar-card d4"><span class="sc-icon">✍️</span><div><div class="sc-title">Sharing &amp; Reflecting</div><div class="sc-text">Documenting what works, what doesn't, and what I'm learning — building in public as an educator who builds.</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ MILESTONES ═══ -->
+<!-- MILESTONES -->
 <section class="section milestones-sec" id="milestones">
   <div class="milestones-inner">
     <div style="text-align:center">
@@ -809,153 +372,43 @@
     </div>
     <div class="tab-shell reveal d2">
       <div class="year-tabs">
-        <button class="tab-btn" data-target="2022">2022</button>
-        <button class="tab-btn" data-target="2023">2023</button>
-        <button class="tab-btn" data-target="2024">2024</button>
-        <button class="tab-btn active" data-target="2025">2025</button>
-        <button class="tab-btn" data-target="2026">2026</button>
+        <button class="tab-btn" data-year="2022">2022</button>
+        <button class="tab-btn" data-year="2023">2023</button>
+        <button class="tab-btn" data-year="2024">2024</button>
+        <button class="tab-btn active" data-year="2025">2025</button>
+        <button class="tab-btn" data-year="2026">2026</button>
       </div>
       <div class="tab-content">
 
-        <!-- 2022 -->
         <div class="tab-pane" id="pane-2022">
-          <div class="ach-item">
-            <div class="ach-icon">🎓</div>
-            <div>
-              <div class="ach-title">Graduated & Posted</div>
-              <div class="ach-desc">Completed B.Ed TESL from IPG Kampus Bahasa Antarabangsa, Kuala Lumpur, and was officially posted as an English language teacher in Putrajaya — the beginning of the journey.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">📖</div>
-            <div>
-              <div class="ach-title">First Year in the Classroom</div>
-              <div class="ach-desc">Navigated the post-UPSR landscape and began adapting to the PBD assessment system — building foundational pedagogy and discovering the real challenges of differentiated teaching.</div>
-            </div>
-          </div>
+          <div class="ach-item"><div class="ach-icon">🎓</div><div><div class="ach-title">Graduated &amp; Posted</div><div class="ach-desc">Completed B.Ed TESL from IPG Kampus Bahasa Antarabangsa, Kuala Lumpur, and was officially posted as an English language teacher in Putrajaya — the beginning of the journey.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">📖</div><div><div class="ach-title">First Year in the Classroom</div><div class="ach-desc">Navigated the post-UPSR landscape and began adapting to the PBD assessment system — building foundational pedagogy and discovering the real challenges of differentiated teaching.</div></div></div>
         </div>
 
-        <!-- 2023 -->
         <div class="tab-pane" id="pane-2023">
-          <div class="ach-item">
-            <div class="ach-icon">🏆</div>
-            <div>
-              <div class="ach-title">Deepening Classroom Practice</div>
-              <div class="ach-desc">Strengthened delivery across all four language skills — reading, writing, listening, and speaking — with a sharper focus on meaningful, real-world communication in the classroom.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🏏</div>
-            <div>
-              <div class="ach-title">Cricket Coaching Begins</div>
-              <div class="ach-desc">Took on a coaching role for school cricket, building leadership skills beyond the classroom and beginning a journey that would reach national level.</div>
-            </div>
-          </div>
+          <div class="ach-item"><div class="ach-icon">🏆</div><div><div class="ach-title">Deepening Classroom Practice</div><div class="ach-desc">Strengthened delivery across all four language skills — reading, writing, listening, and speaking — with a sharper focus on meaningful, real-world communication in the classroom.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🏏</div><div><div class="ach-title">Cricket Coaching Begins</div><div class="ach-desc">Took on a coaching role for school cricket, building leadership skills beyond the classroom and beginning a journey that would reach national level.</div></div></div>
         </div>
 
-        <!-- 2024 -->
         <div class="tab-pane" id="pane-2024">
-          <div class="ach-item">
-            <div class="ach-icon">💡</div>
-            <div>
-              <div class="ach-title">The CEFR Planner Idea Is Born</div>
-              <div class="ach-desc">Identified the core pain point: planning differentiated lessons for Advanced, Intermediate, and Remedial learners simultaneously under PBD. Began conceptualising a digital solution.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🎓</div>
-            <div>
-              <div class="ach-title">CEFR Framework Mastery</div>
-              <div class="ach-desc">Committed to deeply understanding the CEFR A1–C2 framework to align classroom activities, materials, and assessments to internationally recognised standards.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🤖</div>
-            <div>
-              <div class="ach-title">First Steps Into AI-Assisted Building</div>
-              <div class="ach-desc">Began exploring AI tools — Claude and Gemini — to bring technical ideas to life without a traditional coding background. A new skill set started to take shape.</div>
-            </div>
-          </div>
+          <div class="ach-item"><div class="ach-icon">💡</div><div><div class="ach-title">The CEFR Planner Idea Is Born</div><div class="ach-desc">Identified the core pain point: planning differentiated lessons for Advanced, Intermediate, and Remedial learners simultaneously under PBD. Began conceptualising a digital solution.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🎓</div><div><div class="ach-title">CEFR Framework Mastery</div><div class="ach-desc">Committed to deeply understanding the CEFR A1–C2 framework to align classroom activities, materials, and assessments to internationally recognised standards.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🤖</div><div><div class="ach-title">First Steps Into AI-Assisted Building</div><div class="ach-desc">Began exploring AI tools — Claude and Gemini — to bring technical ideas to life without a traditional coding background. A new skill set started to take shape.</div></div></div>
         </div>
 
-        <!-- 2025 -->
         <div class="tab-pane active" id="pane-2025">
-          <div class="ach-item">
-            <div class="ach-icon">🌍</div>
-            <div>
-              <div class="ach-badge">Antarabangsa · 3rd Place</div>
-              <div class="ach-title">SAS International Techno Drama Competition 2025</div>
-              <div class="ach-desc">Represented Malaysia in an international arena, earning 3rd place — a testament to the intersection of technology, creativity, and teaching.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🥈</div>
-            <div>
-              <div class="ach-badge">Kebangsaan · Anugerah Perak</div>
-              <div class="ach-title">Pertandingan Video Kreatif: Reformasi Pendidikan 2025</div>
-              <div class="ach-desc">Silver Award at national level for a creative video on education reform — combining storytelling, vision, and a genuine belief in better classrooms.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🏆</div>
-            <div>
-              <div class="ach-badge">Kebangsaan · Anugerah Khas</div>
-              <div class="ach-title">Pertandingan Video TikTok Keselamatan Jalan Raya 2025</div>
-              <div class="ach-desc">Special Award at the national Road Safety TikTok Video Competition — proof that education doesn't have to live inside four walls.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">📸</div>
-            <div>
-              <div class="ach-badge">Kebangsaan · Saguhati</div>
-              <div class="ach-title">Pertandingan Fotografi Mari Membaca — Peringkat Kementerian 2025</div>
-              <div class="ach-desc">National consolation winner at the Ministry-level Photography Competition for the Dekad Membaca campaign — capturing the spirit of reading through a lens.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🏏</div>
-            <div>
-              <div class="ach-badge">Kebangsaan · Jurulatih Utama</div>
-              <div class="ach-title">Pasukan Kriket Putrajaya U12 — MSSM 2025</div>
-              <div class="ach-desc">Served as Head Coach for the Putrajaya Under-12 Cricket Team at national level (MSSM) — leading young athletes with the same rigour brought to the classroom.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🏅</div>
-            <div>
-              <div class="ach-badge">Negeri · 3rd Place</div>
-              <div class="ach-title">Kejohanan Kriket MSSWPP 2025</div>
-              <div class="ach-desc">Third place at the state-level MSSWPP Cricket Championship — a reflection of consistent development of student athletes over multiple seasons.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">🚀</div>
-            <div>
-              <div class="ach-badge">EdTech · Live App</div>
-              <div class="ach-title">Deployed the CEFR Lesson Planner</div>
-              <div class="ach-desc">Designed, coded (Vanilla HTML/CSS/JS), and deployed a full web application on Railway — turning a classroom problem into a tool that educators can use today.</div>
-            </div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-icon">📜</div>
-            <div>
-              <div class="ach-badge">Pensijilan Profesional</div>
-              <div class="ach-title">Google Certified Educator Level 1, Level 2 & Gemini Certified</div>
-              <div class="ach-desc">Achieved three Google certifications — Level 1, Level 2, and Gemini Educator — cementing a commitment to technology-enhanced teaching practice.</div>
-            </div>
-          </div>
+          <div class="ach-item"><div class="ach-icon">🌍</div><div><div class="ach-badge">Antarabangsa · 3rd Place</div><div class="ach-title">SAS International Techno Drama Competition 2025</div><div class="ach-desc">Represented Malaysia in an international arena, earning 3rd place — a testament to the intersection of technology, creativity, and teaching.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🥈</div><div><div class="ach-badge">Kebangsaan · Anugerah Perak</div><div class="ach-title">Pertandingan Video Kreatif: Reformasi Pendidikan 2025</div><div class="ach-desc">Silver Award at national level for a creative video on education reform — combining storytelling, vision, and a genuine belief in better classrooms.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🏆</div><div><div class="ach-badge">Kebangsaan · Anugerah Khas</div><div class="ach-title">Pertandingan Video TikTok Keselamatan Jalan Raya 2025</div><div class="ach-desc">Special Award at the national Road Safety TikTok Video Competition — proof that education doesn't have to live inside four walls.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">📸</div><div><div class="ach-badge">Kebangsaan · Saguhati</div><div class="ach-title">Pertandingan Fotografi Mari Membaca — Peringkat Kementerian 2025</div><div class="ach-desc">National consolation winner at the Ministry-level Photography Competition for the Dekad Membaca campaign.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🏏</div><div><div class="ach-badge">Kebangsaan · Jurulatih Utama</div><div class="ach-title">Pasukan Kriket Putrajaya U12 — MSSM 2025</div><div class="ach-desc">Served as Head Coach for the Putrajaya Under-12 Cricket Team at national level (MSSM) — leading young athletes with the same rigour brought to the classroom.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🏅</div><div><div class="ach-badge">Negeri · 3rd Place</div><div class="ach-title">Kejohanan Kriket MSSWPP 2025</div><div class="ach-desc">Third place at the state-level MSSWPP Cricket Championship — a reflection of consistent development of student athletes over multiple seasons.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">🚀</div><div><div class="ach-badge">EdTech · Live App</div><div class="ach-title">Deployed the CEFR Lesson Planner</div><div class="ach-desc">Designed, coded (Vanilla HTML/CSS/JS), and deployed a full web application on Railway — turning a classroom problem into a tool that educators can use today.</div></div></div>
+          <div class="ach-item"><div class="ach-icon">📜</div><div><div class="ach-badge">Pensijilan Profesional</div><div class="ach-title">Google Certified Educator Level 1, Level 2 &amp; Gemini Certified</div><div class="ach-desc">Achieved three Google certifications — Level 1, Level 2, and Gemini Educator — cementing a commitment to technology-enhanced teaching practice.</div></div></div>
         </div>
 
-        <!-- 2026 -->
         <div class="tab-pane" id="pane-2026">
-          <div class="ach-item">
-            <div class="ach-icon">🎙️</div>
-            <div>
-              <div class="ach-badge">Sedang Berlangsung</div>
-              <div class="ach-title">Edufluencer UPU Online 3.0</div>
-              <div class="ach-desc">Participating as an Edufluencer for UPU Online 3.0 — reaching students and families across Malaysia with digital content that makes education decisions clearer.</div>
-            </div>
-          </div>
+          <div class="ach-item"><div class="ach-icon">🎙️</div><div><div class="ach-badge">Sedang Berlangsung</div><div class="ach-title">Edufluencer UPU Online 3.0</div><div class="ach-desc">Participating as an Edufluencer for UPU Online 3.0 — reaching students and families across Malaysia with digital content that makes education decisions clearer.</div></div></div>
           <div class="loading-state" style="padding-top:2rem">
             <div class="spinner"></div>
             <h3>The next milestone is loading…</h3>
@@ -968,7 +421,7 @@
   </div>
 </section>
 
-<!-- ═══ PROJECTS ═══ -->
+<!-- PROJECTS -->
 <section class="section projects-sec" id="projects">
   <div class="projects-inner">
     <div>
@@ -989,7 +442,7 @@
             <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">JavaScript</span>
             <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">Railway</span>
           </div>
-          <a href="https://cefr-lesson-planner-production.up.railway.app/" class="b-link">Access the tool →</a>
+          <a href="https://cefr-lesson-planner-production.up.railway.app/" class="b-link" target="_blank" rel="noopener">Access the tool →</a>
         </div>
       </div>
       <div class="bcard reveal d2">
@@ -1016,7 +469,7 @@
   </div>
 </section>
 
-<!-- ═══ PHILOSOPHY ═══ -->
+<!-- PHILOSOPHY -->
 <section class="philosophy-sec">
   <div class="phil-inner">
     <div class="phil-eye reveal">Teaching Philosophy</div>
@@ -1027,82 +480,123 @@
   </div>
 </section>
 
-<!-- ═══ CONTACT ═══ -->
+<!-- CONTACT -->
 <section class="contact-sec" id="contact">
   <div class="contact-inner">
     <div class="reveal-l">
       <div class="contact-eye">Get In Touch</div>
       <h2 class="contact-title">Let's <em>connect.</em></h2>
       <p class="contact-copy">Whether you're a fellow educator, a student, an EdTech enthusiast, or someone who just found this site — I'd love to hear from you.</p>
-      <a href="/cdn-cgi/l/email-protection#046329313331353033373244696b612960682a6160712a697d" class="contact-email"><span class="__cf_email__" data-cfemail="b7d09a8280828683808481f7dad8d29ad3db99d2d3c299dace">[email&#160;protected]</span> →</a>
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;g-57514736&#64;moe-dl.edu.my" class="contact-email">g-57514736&#64;moe-dl.edu.my →</a>
     </div>
     <div class="contact-channels reveal-r">
-      <a href="/cdn-cgi/l/email-protection#accb81999b999d989b9f9aecc1c3c981c8c082c9c8d982c1d5" class="c-ch d1">
-        <span class="c-icon">✉️</span>
-        <div><div class="c-lbl">Email</div><div class="c-val"><span class="__cf_email__" data-cfemail="d0b7fde5e7e5e1e4e7e3e690bdbfb5fdb4bcfeb5b4a5febda9">[email&#160;protected]</span></div></div>
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;g-57514736&#64;moe-dl.edu.my" class="c-ch d1">
+        <span class="c-icon">✉️</span><div><div class="c-lbl">Email</div><div class="c-val">g-57514736&#64;moe-dl.edu.my</div></div>
       </a>
       <a href="https://cefr-lesson-planner-production.up.railway.app/" class="c-ch d2" target="_blank" rel="noopener">
-        <span class="c-icon">🌐</span>
-        <div><div class="c-lbl">CEFR Lesson Planner</div><div class="c-val">Open the live app →</div></div>
+        <span class="c-icon">🌐</span><div><div class="c-lbl">CEFR Lesson Planner</div><div class="c-val">Open the live app →</div></div>
       </a>
       <a href="https://www.facebook.com/share/1HoaV5ZQbh/?mibextid=wwXIfr" class="c-ch d3" target="_blank" rel="noopener">
-        <span class="c-icon">📘</span>
-        <div><div class="c-lbl">Facebook</div><div class="c-val">Follow on Facebook</div></div>
+        <span class="c-icon">📘</span><div><div class="c-lbl">Facebook</div><div class="c-val">Follow on Facebook</div></div>
       </a>
-      <a href="https://www.instagram.com/reyysmaanavuddaiyar?igsh=MTBtYmoxaGRmc2xnMA%3D%3D&utm_source=qr" class="c-ch d4" target="_blank" rel="noopener">
-        <span class="c-icon">📸</span>
-        <div><div class="c-lbl">Instagram</div><div class="c-val">@reyysmaanavuddaiyar</div></div>
+      <a href="https://www.instagram.com/reyysmaanavuddaiyar" class="c-ch d4" target="_blank" rel="noopener">
+        <span class="c-icon">📸</span><div><div class="c-lbl">Instagram</div><div class="c-val">&#64;reyysmaanavuddaiyar</div></div>
       </a>
-      <a href="https://www.tiktok.com/@mamat.india?_r=1&_t=ZS-945JaA6PUma" class="c-ch" style="transition-delay:.48s" target="_blank" rel="noopener">
-        <span class="c-icon">🎵</span>
-        <div><div class="c-lbl">TikTok</div><div class="c-val">@mamat.india</div></div>
+      <a href="https://www.tiktok.com/@mamat.india" class="c-ch" style="transition-delay:.48s" target="_blank" rel="noopener">
+        <span class="c-icon">🎵</span><div><div class="c-lbl">TikTok</div><div class="c-val">&#64;mamat.india</div></div>
       </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">MrReyy<em style="letter-spacing:0">.com</em></div>
-  <p class="footer-copy">© 2025 · Educator & Digital Innovator · Putrajaya, Malaysia</p>
+  <div class="footer-logo">MrReyy<em>.com</em></div>
+  <p class="footer-copy">&#169; 2025 &middot; Educator &amp; Digital Innovator &middot; Putrajaya, Malaysia</p>
   <ul class="footer-links">
-    <li><a href="https://cefr-lesson-planner-production.up.railway.app/">CEFR Planner</a></li>
-    <li><a href="https://www.instagram.com/reyysmaanavuddaiyar?igsh=MTBtYmoxaGRmc2xnMA%3D%3D&utm_source=qr">Instagram</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#244309111311151013171264494b410940480a4140510a495d">Email</a></li>
+    <li><a href="https://cefr-lesson-planner-production.up.railway.app/" target="_blank" rel="noopener">CEFR Planner</a></li>
+    <li><a href="https://www.instagram.com/reyysmaanavuddaiyar" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;g-57514736&#64;moe-dl.edu.my">Email</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Typing animation
-  const phrases = ['English Language Teacher.','Digital Innovator.','CEFR Specialist.','Google Certified Educator.','Malaysian Educator.'];
-  let pi=0,ci=0,del=false;
-  const typedEl = document.getElementById('typed-el');
-  function type(){
-    const cur=phrases[pi];
-    if(!del){typedEl.textContent=cur.slice(0,++ci);if(ci===cur.length){del=true;setTimeout(type,1900);return;}}
-    else{typedEl.textContent=cur.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
-    setTimeout(type,del?40:80);
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // ── TYPING ANIMATION ──
+  var phrases = [
+    'English Language Teacher.',
+    'Digital Innovator.',
+    'CEFR Specialist.',
+    'Google Certified Educator.',
+    'Malaysian Educator.'
+  ];
+  var pi = 0, ci = 0, deleting = false;
+  var typedEl = document.getElementById('typed-el');
+
+  function type() {
+    if (!typedEl) return;
+    var cur = phrases[pi];
+    if (!deleting) {
+      ci++;
+      typedEl.textContent = cur.slice(0, ci);
+      if (ci === cur.length) {
+        deleting = true;
+        setTimeout(type, 1900);
+        return;
+      }
+    } else {
+      ci--;
+      typedEl.textContent = cur.slice(0, ci);
+      if (ci === 0) {
+        deleting = false;
+        pi = (pi + 1) % phrases.length;
+      }
+    }
+    setTimeout(type, deleting ? 40 : 80);
   }
   type();
 
-  // Scroll reveal — both directions (up & down)
-  const revealEls = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+  // ── SCROLL REVEAL ──
+  var revealEls = document.querySelectorAll('.reveal, .reveal-l, .reveal-r');
 
   function checkReveal() {
-    const triggerPoint = window.innerHeight * 0.88;
-    revealEls.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < triggerPoint && rect.bottom > 0) {
-        el.classList.add('active');
+    var trigger = window.innerHeight * 0.88;
+    for (var i = 0; i < revealEls.length; i++) {
+      var rect = revealEls[i].getBoundingClientRect();
+      if (rect.top < trigger && rect.bottom > 0) {
+        revealEls[i].classList.add('active');
       } else {
-        el.classList.remove('active');
+        revealEls[i].classList.remove('active');
       }
-    });
+    }
   }
-
   window.addEventListener('scroll', checkReveal, { passive: true });
   checkReveal();
 
-  // Nav shadow on scroll
-  window.addEventListener('scroll',()=>{
-    document.getElementById('main-nav').classList.toggle('scrolled',scrollY>40);
+  // ── NAV SHADOW ──
+  var mainNav = document.getElementById('main-nav');
+  window.addEventListener('scroll', function() {
+    if (mainNav) {
+      mainNav.classList.toggle('scrolled', window.scrollY > 40);
+    }
   });
+
+  // ── MILESTONE TABS ──
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var tabPanes = document.querySelectorAll('.tab-pane');
+
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var year = btn.getAttribute('data-year');
+      tabBtns.forEach(function(b) { b.classList.remove('active'); });
+      tabPanes.forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      var pane = document.getElementById('pane-' + year);
+      if (pane) pane.classList.add('active');
+    });
+  });
+
+});
+</script>
+</body>
+</html>
