@@ -83,10 +83,14 @@
     transition:all 0.2s;
   }
   .nav-links a:hover { color:var(--navy); background:var(--navy-dim); }
+  .nav-cta-wrapper { display:flex; align-items:center; }
   .nav-cta {
     background:var(--ink) !important; color:#fff !important;
     padding:0.5rem 1.3rem !important; border-radius:50px !important;
-    font-weight:800 !important;
+    font-weight:800 !important; font-size:0.8rem !important;
+    text-transform:uppercase !important; letter-spacing:0.1em !important;
+    text-decoration:none !important; transition:all 0.2s !important;
+    white-space:nowrap;
   }
   .nav-cta:hover { background:var(--navy) !important; box-shadow:0 4px 18px rgba(30,58,95,0.25) !important; transform:translateY(-1px); }
 
@@ -488,6 +492,168 @@
   .reveal-r { opacity:0; transform:translateX(26px); transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1); }
   .reveal-r.active { opacity:1; transform:translateX(0); }
   .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+
+  /* ═══════════ MOBILE RESPONSIVE ═══════════ */
+  @media (max-width: 768px) {
+
+    /* ── NAV ── */
+    nav {
+      padding: 0 5%;
+      height: 60px;
+    }
+    .nav-links {
+      display: none; /* hide centre links on mobile */
+    }
+    /* Show only the CEFR button on the right */
+    .nav-cta-wrapper {
+      display: flex;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding-top: 60px;
+    }
+
+    /* Hide the entire right panel (floating cards + photo area) */
+    .hero-right {
+      display: none;
+    }
+
+    .hero-left {
+      padding: 3rem 6% 3.5rem;
+      text-align: center;
+      align-items: center;
+    }
+
+    .hero-badge {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1.hero-name {
+      font-size: clamp(2.4rem, 10vw, 3.2rem);
+    }
+
+    .hero-bio {
+      font-size: 0.9rem;
+      max-width: 100%;
+      text-align: left;
+    }
+
+    .hero-btns {
+      justify-content: center;
+    }
+
+    .hero-stats {
+      width: 100%;
+      gap: 0;
+    }
+    .hstat {
+      padding: 1.2rem 0 0;
+      padding-right: 0;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      flex: 1;
+    }
+    .hstat:last-child { border-right: none; }
+    .hstat-num { font-size: 1.5rem; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .section {
+      padding: 4.5rem 5%;
+    }
+
+    .sec-title {
+      font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    /* ── MILESTONES ── */
+    .year-tabs {
+      gap: 0.5rem;
+    }
+    .tab-btn {
+      padding: 0.55rem 1.1rem;
+      font-size: 0.8rem;
+    }
+    .ach-item {
+      padding: 1.4rem 1.2rem;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .ach-icon { font-size: 1.5rem; }
+
+    /* ── BENTO PROJECTS ── */
+    .bento {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .bcard.span2 {
+      grid-column: span 1;
+    }
+    .bcard {
+      padding: 2rem 1.6rem;
+    }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy-sec {
+      padding: 5rem 6%;
+    }
+    .philosophy-sec::before {
+      font-size: 14rem;
+      top: -1rem;
+      right: 1rem;
+    }
+    .phil-quote {
+      font-size: clamp(1.15rem, 5vw, 1.6rem);
+    }
+
+    /* ── CONTACT ── */
+    .contact-sec {
+      padding: 5rem 5%;
+    }
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .contact-title {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+    .contact-email {
+      font-size: 0.88rem;
+      word-break: break-all;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      padding: 1.8rem 5%;
+    }
+    .footer-links {
+      gap: 1.2rem;
+    }
+  }
+
+  /* Extra small phones */
+  @media (max-width: 400px) {
+    h1.hero-name {
+      font-size: 2.2rem;
+    }
+    .tab-btn {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.75rem;
+    }
+    .hstat-num { font-size: 1.3rem; }
+  }
 </style>
 </head>
 <body>
@@ -503,6 +669,8 @@
     <a href="#milestones">Milestones</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-cta-wrapper">
     <a href="https://cefr-lesson-planner-production.up.railway.app/" class="nav-cta">CEFR Planner</a>
   </div>
 </nav>
@@ -866,12 +1034,12 @@
       <div class="contact-eye">Get In Touch</div>
       <h2 class="contact-title">Let's <em>connect.</em></h2>
       <p class="contact-copy">Whether you're a fellow educator, a student, an EdTech enthusiast, or someone who just found this site — I'd love to hear from you.</p>
-      <a href="mailto:g-57514736@moe-dl.edu.my" class="contact-email">g-57514736@moe-dl.edu.my →</a>
+      <a href="/cdn-cgi/l/email-protection#046329313331353033373244696b612960682a6160712a697d" class="contact-email"><span class="__cf_email__" data-cfemail="b7d09a8280828683808481f7dad8d29ad3db99d2d3c299dace">[email&#160;protected]</span> →</a>
     </div>
     <div class="contact-channels reveal-r">
-      <a href="mailto:g-57514736@moe-dl.edu.my" class="c-ch d1">
+      <a href="/cdn-cgi/l/email-protection#accb81999b999d989b9f9aecc1c3c981c8c082c9c8d982c1d5" class="c-ch d1">
         <span class="c-icon">✉️</span>
-        <div><div class="c-lbl">Email</div><div class="c-val">g-57514736@moe-dl.edu.my</div></div>
+        <div><div class="c-lbl">Email</div><div class="c-val"><span class="__cf_email__" data-cfemail="d0b7fde5e7e5e1e4e7e3e690bdbfb5fdb4bcfeb5b4a5febda9">[email&#160;protected]</span></div></div>
       </a>
       <a href="https://cefr-lesson-planner-production.up.railway.app/" class="c-ch d2" target="_blank" rel="noopener">
         <span class="c-icon">🌐</span>
@@ -899,11 +1067,11 @@
   <ul class="footer-links">
     <li><a href="https://cefr-lesson-planner-production.up.railway.app/">CEFR Planner</a></li>
     <li><a href="https://www.instagram.com/reyysmaanavuddaiyar?igsh=MTBtYmoxaGRmc2xnMA%3D%3D&utm_source=qr">Instagram</a></li>
-    <li><a href="mailto:g-57514736@moe-dl.edu.my">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#244309111311151013171264494b410940480a4140510a495d">Email</a></li>
   </ul>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Typing animation
   const phrases = ['English Language Teacher.','Digital Innovator.','CEFR Specialist.','Google Certified Educator.','Malaysian Educator.'];
   let pi=0,ci=0,del=false;
@@ -938,16 +1106,3 @@
   window.addEventListener('scroll',()=>{
     document.getElementById('main-nav').classList.toggle('scrolled',scrollY>40);
   });
-
-  // Milestone tabs
-  document.querySelectorAll('.tab-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(`pane-${btn.dataset.target}`).classList.add('active');
-    });
-  });
-</script>
-</body>
-</html>
