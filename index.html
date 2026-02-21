@@ -21,7 +21,7 @@
   /* ── NAV ── */
   nav{position:fixed;top:0;width:100%;z-index:1000;padding:0 6%;height:68px;display:flex;justify-content:space-between;align-items:center;background:rgba(249,250,251,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s;}
   nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.07);}
-  .logo{font-size:1.15rem;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;display:flex;align-items:center;gap:0.45rem;}
+  .logo{font-size:1.15rem;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;display:flex;align-items:center;gap:0.4rem;}
   .logo-pulse{width:8px;height:8px;border-radius:50%;background:var(--navy);animation:logoPulse 2.5s ease-in-out infinite;}
   @keyframes logoPulse{0%,100%{box-shadow:0 0 0 2px rgba(30,58,95,0.2);}50%{box-shadow:0 0 0 6px rgba(30,58,95,0.08),0 0 14px rgba(30,58,95,0.15);}}
   .logo em{font-style:normal;color:var(--navy);font-weight:800;}
@@ -106,14 +106,23 @@
   .tab-pane{display:none;animation:slideUp 0.45s ease both;}
   .tab-pane.active{display:block;}
   @keyframes slideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-  .ach-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.6rem 1.8rem;margin-bottom:1rem;display:flex;gap:1.4rem;align-items:flex-start;position:relative;overflow:hidden;transition:all 0.3s;}
+  /* Collapsible achievement items */
+  .ach-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:0.6rem;position:relative;overflow:hidden;cursor:pointer;transition:border-color 0.25s,box-shadow 0.25s;}
   .ach-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--navy);transform:scaleY(0);transform-origin:top;transition:transform 0.35s ease;}
-  .ach-item:hover::before{transform:scaleY(1);}
-  .ach-item:hover{border-color:var(--navy-border);transform:translateX(4px);box-shadow:0 6px 24px rgba(30,58,95,0.07);}
-  .ach-icon{font-size:1.8rem;flex-shrink:0;}
-  .ach-badge{display:inline-block;font-size:0.52rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--navy);background:var(--navy-dim);border:1px solid var(--navy-border);padding:0.2rem 0.65rem;border-radius:50px;margin-bottom:0.5rem;}
-  .ach-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.4rem;}
-  .ach-desc{font-size:0.78rem;color:var(--muted-mid);line-height:1.8;}
+  .ach-item.open::before{transform:scaleY(1);}
+  .ach-item.open{border-color:var(--navy-border);box-shadow:0 6px 24px rgba(30,58,95,0.07);}
+  .ach-header{display:flex;gap:1.1rem;align-items:center;padding:1.1rem 1.4rem;user-select:none;}
+  .ach-icon{font-size:1.5rem;flex-shrink:0;}
+  .ach-header-text{flex:1;min-width:0;}
+  .ach-badge{display:inline-block;font-size:0.52rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--navy);background:var(--navy-dim);border:1px solid var(--navy-border);padding:0.2rem 0.65rem;border-radius:50px;margin-bottom:0.3rem;}
+  .ach-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--ink);line-height:1.3;}
+  .ach-chevron{flex-shrink:0;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.3s;color:var(--muted-light);}
+  .ach-chevron svg{width:11px;height:11px;transition:transform 0.3s;}
+  .ach-item.open .ach-chevron{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .ach-item.open .ach-chevron svg{transform:rotate(180deg);}
+  .ach-body{max-height:0;overflow:hidden;transition:max-height 0.38s cubic-bezier(0.16,1,0.3,1),opacity 0.3s ease;}
+  .ach-item.open .ach-body{max-height:220px;}
+  .ach-desc{font-size:0.78rem;color:var(--muted-mid);line-height:1.8;padding:0 1.4rem 1.2rem 4rem;}
   .loading-state{text-align:center;padding:3rem 2rem;}
   .spinner{width:44px;height:44px;border-radius:50%;border:3px solid var(--navy-pale);border-top-color:var(--navy);animation:spin 0.9s linear infinite;margin:0 auto 1.5rem;}
   @keyframes spin{to{transform:rotate(360deg);}}
@@ -246,13 +255,49 @@
     .tab-btn{padding:0.5rem 0.8rem;font-size:0.7rem;}
     .hstat-num{font-size:1.3rem;}
   }
+
+  /* ── FLOATING CLOSE BUTTON ── */
+  .float-close {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem 1.8rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 28px rgba(30,58,95,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.25s;
+  }
+  .float-close.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
+  .float-close:hover {
+    background: var(--ink);
+    box-shadow: 0 12px 36px rgba(30,58,95,0.45);
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a href="#" class="logo"><span class="logo-pulse"></span>MrReyy<em>.com</em></a>
+  <a href="#" class="logo"><span class="logo-pulse"></span><span>MrReyy<em>.com</em></span></a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#milestones">Milestones</a>
@@ -352,103 +397,87 @@
         <button class="tab-btn" data-year="2022">2022</button>
         <button class="tab-btn" data-year="2023">2023</button>
         <button class="tab-btn" data-year="2024">2024</button>
-        <button class="tab-btn active" data-year="2025">2025</button>
+        <button class="tab-btn" data-year="2025">2025</button>
         <button class="tab-btn" data-year="2026">2026</button>
       </div>
       <div class="tab-content">
 
         <div class="tab-pane" id="pane-2022">
-                    <div class="ach-item">
-            <span class="ach-icon">&#127891;</span>
-            <div><div class="ach-title">Graduated &amp; Posted</div><div class="ach-desc">Completed B.Ed TESL from IPG Kampus Bahasa Antarabangsa, Kuala Lumpur, and was officially posted as an English language teacher in Putrajaya — the beginning of the journey.</div></div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127891;</span><div class="ach-header-text"><div class="ach-title">Graduated &amp; Posted</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Completed B.Ed TESL from IPG Kampus Bahasa Antarabangsa, Kuala Lumpur, and was officially posted as an English language teacher in Putrajaya — the beginning of the journey.</div></div>
           </div>
-          </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#128214;</span>
-            <div><div class="ach-title">First Year in the Classroom</div><div class="ach-desc">Navigated the post-UPSR landscape and began adapting to the PBD assessment system — building foundational pedagogy and discovering the real challenges of differentiated teaching.</div></div>
-          </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#128214;</span><div class="ach-header-text"><div class="ach-title">First Year in the Classroom</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Navigated the post-UPSR landscape and began adapting to the PBD assessment system — building foundational pedagogy and discovering the real challenges of differentiated teaching.</div></div>
           </div>
         </div>
 
         <div class="tab-pane" id="pane-2023">
-                    <div class="ach-item">
-            <span class="ach-icon">&#127942;</span>
-            <div><div class="ach-title">Deepening Classroom Practice</div><div class="ach-desc">Strengthened delivery across all four language skills — reading, writing, listening, and speaking — with a sharper focus on meaningful, real-world communication.</div></div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127942;</span><div class="ach-header-text"><div class="ach-title">Deepening Classroom Practice</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Strengthened delivery across all four language skills — reading, writing, listening, and speaking — with a sharper focus on meaningful, real-world communication.</div></div>
           </div>
-          </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#127953;</span>
-            <div><div class="ach-title">Cricket Coaching Begins</div><div class="ach-desc">Took on a coaching role for school cricket, building leadership skills beyond the classroom and beginning a journey that would reach national level.</div></div>
-          </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127953;</span><div class="ach-header-text"><div class="ach-title">Cricket Coaching Begins</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Took on a coaching role for school cricket, building leadership skills beyond the classroom and beginning a journey that would reach national level.</div></div>
           </div>
         </div>
 
         <div class="tab-pane" id="pane-2024">
-                    <div class="ach-item">
-            <span class="ach-icon">&#128161;</span>
-            <div><div class="ach-title">The CEFR Planner Idea Is Born</div><div class="ach-desc">Identified the core pain point: planning differentiated lessons for Advanced, Intermediate, and Remedial learners simultaneously under PBD. Began conceptualising a digital solution.</div></div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#128161;</span><div class="ach-header-text"><div class="ach-title">The CEFR Planner Idea Is Born</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Identified the core pain point: planning differentiated lessons for Advanced, Intermediate, and Remedial learners simultaneously under PBD. Began conceptualising a digital solution.</div></div>
           </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127891;</span><div class="ach-header-text"><div class="ach-title">CEFR Framework Mastery</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Committed to deeply understanding the CEFR A1–C2 framework to align classroom activities, materials, and assessments to internationally recognised standards.</div></div>
           </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#127891;</span>
-            <div><div class="ach-title">CEFR Framework Mastery</div><div class="ach-desc">Committed to deeply understanding the CEFR A1–C2 framework to align classroom activities, materials, and assessments to internationally recognised standards.</div></div>
-          </div>
-          </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#129302;</span>
-            <div><div class="ach-title">First Steps Into AI-Assisted Building</div><div class="ach-desc">Began exploring Claude and Gemini to bring technical ideas to life without a traditional coding background. A new skill set started to take shape.</div></div>
-          </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#129302;</span><div class="ach-header-text"><div class="ach-title">First Steps Into AI-Assisted Building</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Began exploring Claude and Gemini to bring technical ideas to life without a traditional coding background. A new skill set started to take shape.</div></div>
           </div>
         </div>
 
-        <div class="tab-pane active" id="pane-2025">
-                    <div class="ach-item">
-            <span class="ach-icon">&#127758;</span>
-            <div><div class="ach-badge">Antarabangsa &middot; 3rd Place</div><div class="ach-title">SAS International Techno Drama Competition 2025</div><div class="ach-desc">Represented Malaysia in an international arena, earning 3rd place — a testament to the intersection of technology, creativity, and teaching.</div></div>
+        <div class="tab-pane" id="pane-2025">
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127758;</span><div class="ach-header-text"><div class="ach-badge">Antarabangsa &middot; 3rd Place</div><div class="ach-title">SAS International Techno Drama Competition 2025</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Represented Malaysia in an international arena, earning 3rd place — a testament to the intersection of technology, creativity, and teaching.</div></div>
           </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#129352;</span><div class="ach-header-text"><div class="ach-badge">Kebangsaan &middot; Anugerah Perak</div><div class="ach-title">Pertandingan Video Kreatif: Reformasi Pendidikan 2025</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Silver Award at national level for a creative video on education reform — storytelling in service of better classrooms.</div></div>
           </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#129352;</span>
-            <div><div class="ach-badge">Kebangsaan &middot; Anugerah Perak</div><div class="ach-title">Pertandingan Video Kreatif: Reformasi Pendidikan 2025</div><div class="ach-desc">Silver Award at national level for a creative video on education reform — storytelling in service of better classrooms.</div></div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127942;</span><div class="ach-header-text"><div class="ach-badge">Kebangsaan &middot; Anugerah Khas</div><div class="ach-title">Pertandingan Video TikTok Keselamatan Jalan Raya 2025</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Special Award at the national Road Safety TikTok Video Competition — proof that education doesn't have to live inside four walls.</div></div>
           </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#128248;</span><div class="ach-header-text"><div class="ach-badge">Kebangsaan &middot; Saguhati</div><div class="ach-title">Pertandingan Fotografi Mari Membaca — Peringkat Kementerian 2025</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">National consolation winner at the Ministry-level Photography Competition for the Dekad Membaca campaign.</div></div>
           </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#127942;</span>
-            <div><div class="ach-badge">Kebangsaan &middot; Anugerah Khas</div><div class="ach-title">Pertandingan Video TikTok Keselamatan Jalan Raya 2025</div><div class="ach-desc">Special Award at the national Road Safety TikTok Video Competition — proof that education doesn't have to live inside four walls.</div></div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127953;</span><div class="ach-header-text"><div class="ach-badge">Kebangsaan &middot; Jurulatih Utama</div><div class="ach-title">Pasukan Kriket Putrajaya U12 — MSSM 2025</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Served as Head Coach for the Putrajaya Under-12 Cricket Team at national level (MSSM) — leading young athletes with the same rigour brought to the classroom.</div></div>
           </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127949;</span><div class="ach-header-text"><div class="ach-badge">Negeri &middot; 3rd Place</div><div class="ach-title">Kejohanan Kriket MSSWPP 2025</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Third place at the state-level MSSWPP Cricket Championship — consistent development of student athletes over multiple seasons.</div></div>
           </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#128248;</span>
-            <div><div class="ach-badge">Kebangsaan &middot; Saguhati</div><div class="ach-title">Pertandingan Fotografi Mari Membaca — Peringkat Kementerian 2025</div><div class="ach-desc">National consolation winner at the Ministry-level Photography Competition for the Dekad Membaca campaign.</div></div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#128640;</span><div class="ach-header-text"><div class="ach-badge">EdTech &middot; Live App</div><div class="ach-title">Deployed the CEFR Lesson Planner</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Designed, coded (Vanilla HTML/CSS/JS), and deployed a full web application on Railway — turning a classroom problem into a tool educators can use today.</div></div>
           </div>
-          </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#127953;</span>
-            <div><div class="ach-badge">Kebangsaan &middot; Jurulatih Utama</div><div class="ach-title">Pasukan Kriket Putrajaya U12 — MSSM 2025</div><div class="ach-desc">Served as Head Coach for the Putrajaya Under-12 Cricket Team at national level (MSSM) — leading young athletes with the same rigour brought to the classroom.</div></div>
-          </div>
-          </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#127949;</span>
-            <div><div class="ach-badge">Negeri &middot; 3rd Place</div><div class="ach-title">Kejohanan Kriket MSSWPP 2025</div><div class="ach-desc">Third place at the state-level MSSWPP Cricket Championship — consistent development of student athletes over multiple seasons.</div></div>
-          </div>
-          </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#128640;</span>
-            <div><div class="ach-badge">EdTech &middot; Live App</div><div class="ach-title">Deployed the CEFR Lesson Planner</div><div class="ach-desc">Designed, coded (Vanilla HTML/CSS/JS), and deployed a full web application on Railway — turning a classroom problem into a tool educators can use today.</div></div>
-          </div>
-          </div>
-                    <div class="ach-item">
-            <span class="ach-icon">&#128220;</span>
-            <div><div class="ach-badge">Pensijilan Profesional</div><div class="ach-title">Google Certified Educator Level 1, Level 2 &amp; Gemini Certified</div><div class="ach-desc">Three Google certifications cementing a commitment to technology-enhanced teaching practice.</div></div>
-          </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#128220;</span><div class="ach-header-text"><div class="ach-badge">Pensijilan Profesional</div><div class="ach-title">Google Certified Educator Level 1, Level 2 &amp; Gemini Certified</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Three Google certifications cementing a commitment to technology-enhanced teaching practice.</div></div>
           </div>
         </div>
 
         <div class="tab-pane" id="pane-2026">
-                    <div class="ach-item">
-            <span class="ach-icon">&#127897;</span>
-            <div><div class="ach-badge">Sedang Berlangsung</div><div class="ach-title">Edufluencer UPU Online 3.0</div><div class="ach-desc">Participating as an Edufluencer for UPU Online 3.0 — reaching students and families across Malaysia with digital content that makes education decisions clearer.</div></div>
-          </div>
+          <div class="ach-item">
+            <div class="ach-header"><span class="ach-icon">&#127897;</span><div class="ach-header-text"><div class="ach-badge">Sedang Berlangsung</div><div class="ach-title">Edufluencer UPU Online 3.0</div></div><div class="ach-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+            <div class="ach-body"><div class="ach-desc">Participating as an Edufluencer for UPU Online 3.0 — reaching students and families across Malaysia with digital content that makes education decisions clearer.</div></div>
           </div>
           <div class="loading-state" style="padding-top:2rem">
             <div class="spinner"></div>
@@ -589,25 +618,78 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', checkReveal, {passive:true});
   checkReveal();
 
-  // NAV
+  // NAV + float button hide on projects
   var nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', function(){ if(nav) nav.classList.toggle('scrolled', window.scrollY>40); });
+  var projectsSec = document.getElementById('projects');
+  window.addEventListener('scroll', function(){
+    if(nav) nav.classList.toggle('scrolled', window.scrollY>40);
+    // Hide float button once projects section enters view
+    if(floatBtn && projectsSec) {
+      var rect = projectsSec.getBoundingClientRect();
+      if(rect.top <= window.innerHeight * 0.85) {
+        floatBtn.classList.remove('visible');
+      } else {
+        updateFloatBtn();
+      }
+    }
+  });
 
   // TABS
   var btns = document.querySelectorAll('.tab-btn');
   var panes = document.querySelectorAll('.tab-pane');
+  var floatBtn = document.getElementById('float-close-btn');
+
+  function anyPaneActive() {
+    return document.querySelector('.tab-pane.active') !== null;
+  }
+
+  function updateFloatBtn() {
+    if (floatBtn) floatBtn.classList.toggle('visible', anyPaneActive());
+  }
+
   btns.forEach(function(btn){
     btn.addEventListener('click', function(){
+      var wasActive = btn.classList.contains('active');
       btns.forEach(function(b){b.classList.remove('active');});
       panes.forEach(function(p){p.classList.remove('active');});
-      btn.classList.add('active');
-      var pane = document.getElementById('pane-'+btn.getAttribute('data-year'));
-      if(pane) pane.classList.add('active');
+      if(!wasActive) {
+        btn.classList.add('active');
+        var pane = document.getElementById('pane-'+btn.getAttribute('data-year'));
+        if(pane) pane.classList.add('active');
+      }
+      updateFloatBtn();
     });
   });
 
+  // Float button — close all and scroll back to milestones
+  if (floatBtn) {
+    floatBtn.addEventListener('click', function(){
+      btns.forEach(function(b){b.classList.remove('active');});
+      panes.forEach(function(p){p.classList.remove('active');});
+      updateFloatBtn();
+      var sec = document.getElementById('milestones');
+      if(sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+
+  // ACCORDION — collapsible achievements
+  document.addEventListener('click', function(e){
+    var item = e.target.closest('.ach-item');
+    if(!item) return;
+    var isOpen = item.classList.contains('open');
+    // Close all in same pane
+    var pane = item.closest('.tab-pane');
+    if(pane){
+      pane.querySelectorAll('.ach-item.open').forEach(function(el){
+        if(el !== item) el.classList.remove('open');
+      });
+    }
+    item.classList.toggle('open', !isOpen);
+  });
 
 });
 </script>
+
+<button class="float-close" id="float-close-btn">&#8593; All Years</button>
 </body>
 </html>
