@@ -229,8 +229,8 @@
     .ach-item{padding:1.2rem;}
     .ach-icon{font-size:1.5rem;}
 
-    .bento{grid-template-columns:1fr;gap:1rem;margin-top:2.5rem;}
-    .bcard.span2{grid-column:span 1;}
+    .bento{grid-template-columns:1fr!important;gap:1rem;margin-top:2.5rem;}
+    .bcard.span2{grid-column:span 1!important;}
     .bcard{padding:1.8rem 1.5rem;}
 
     .philosophy-sec{padding:5rem 5%;}
@@ -301,7 +301,7 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#milestones">Milestones</a>
-    <a href="#projects">Projects</a>
+    <a href="#projects">My Tools</a>
     <a href="#contact">Contact</a>
   </div>
   <a href="https://cefr-lesson-planner-production.up.railway.app/" class="nav-cta" target="_blank" rel="noopener">CEFR Planner</a>
@@ -491,50 +491,70 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- MY TOOLS -->
 <section class="section projects-sec" id="projects">
   <div class="projects-inner">
     <div>
-      <div class="sec-eye reveal">Selected Works</div>
-      <h2 class="sec-title reveal">Tools built for <em>modern education.</em></h2>
+      <div class="sec-eye reveal">My Tools</div>
+      <h2 class="sec-title reveal">Built for <em>real classrooms.</em></h2>
+      <p class="sec-sub reveal d1" style="margin-bottom:0">Tools I've built — or am building — to solve problems I've personally faced as a teacher.</p>
     </div>
-    <div class="bento">
+    <div class="bento" style="grid-template-columns:1fr 1fr;grid-template-rows:auto auto;">
+
+      <!-- CEFR Planner — Live -->
       <div class="bcard dark span2 reveal d1" style="display:flex;flex-direction:column;justify-content:space-between;">
         <div>
-          <span class="b-tag">&#9679; Live App</span>
-          <h3 class="b-title">The CEFR Lesson Planner</h3>
-          <p class="b-desc" style="max-width:480px">Born from a real classroom problem: planning differentiated lessons for Advanced, Intermediate, and Remedial learners under Malaysia's PBD system. Generates CEFR-aligned lesson plans in seconds. Built from scratch, deployed live on Railway.</p>
-        </div>
-        <div>
-          <div class="b-stack" style="margin-bottom:1.5rem">
+          <span class="b-tag">&#9679; Live</span>
+          <h3 class="b-title">CEFR Lesson Planner</h3>
+          <p class="b-desc" style="max-width:540px">Born from a real problem: planning differentiated lessons for Advanced, Intermediate, and Remedial learners under Malaysia's PBD system. Generates CEFR-aligned lesson plans in seconds. Built from scratch, deployed live on Railway.</p>
+          <div class="b-stack" style="margin-top:1.2rem">
             <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">HTML</span>
             <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">CSS</span>
             <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">JavaScript</span>
             <span class="b-stag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1)">Railway</span>
           </div>
-          <a href="https://cefr-lesson-planner-production.up.railway.app/" class="b-link" target="_blank" rel="noopener">Access the tool &#8594;</a>
+        </div>
+        <div style="margin-top:1.8rem">
+          <a href="https://cefr-lesson-planner-production.up.railway.app/" class="b-link" target="_blank" rel="noopener">Open the tool &#8594;</a>
         </div>
       </div>
-      <div class="bcard reveal d2">
-        <span class="b-tag">Stack</span>
-        <h3 class="b-title">Tech Used</h3>
-        <p class="b-desc">Vanilla HTML, CSS, JavaScript. Hosted on Railway. Built with Claude &amp; Gemini AI assistance — no traditional coding background required.</p>
-        <div class="b-stack" style="margin-top:1.5rem">
-          <span class="b-stag">Vanilla JS</span>
-          <span class="b-stag">Railway</span>
-          <span class="b-stag">AI-Assisted</span>
+
+      <!-- Digital English Games -->
+      <div class="bcard light-accent reveal d1">
+        <span class="b-tag">&#9679; Coming Soon</span>
+        <h3 class="b-title">Digital English Games</h3>
+        <p class="b-desc">A curated collection of digital games for English language learning — built to make vocabulary, grammar, and reading genuinely fun for Malaysian students.</p>
+        <div class="b-stack" style="margin-top:1.2rem">
+          <span class="b-stag">Web App</span>
+          <span class="b-stag">ELT Games</span>
+          <span class="b-stag">In Progress</span>
         </div>
       </div>
-      <div class="bcard light-accent span2 reveal d1">
-        <span class="b-tag">The Origin Story</span>
-        <h3 class="b-title">Why I Built It</h3>
-        <p class="b-desc" style="max-width:520px">When PBD replaced UPSR, teachers gained the freedom to design their own lessons — but with it came the daily challenge of catering to three different learner levels at once. I struggled with that. So I built the CEFR Lesson Planner — because the tools we need don't always exist yet, and teachers are often the best people to build them.</p>
-      </div>
+
+      <!-- MyBFF Speaking Bot -->
       <div class="bcard reveal d2">
-        <span class="b-tag">What's Next</span>
-        <h3 class="b-title">Always Building</h3>
-        <p class="b-desc">Collaborating with AI to solve the next classroom challenge. If a problem repeats itself in the classroom, it deserves a solution.</p>
+        <span class="b-tag">&#9679; Coming Soon</span>
+        <h3 class="b-title">MyBFF — Speaking Assistant</h3>
+        <p class="b-desc">A Telegram bot giving remedial learners access to speaking practice wherever they are. Mr Reyy's Speaking Assistant — because learning shouldn't stop at the classroom door.</p>
+        <div class="b-stack" style="margin-top:1.2rem">
+          <span class="b-stag">Telegram Bot</span>
+          <span class="b-stag">Speaking</span>
+          <span class="b-stag">Remedial</span>
+        </div>
       </div>
+
+      <!-- Homework Bot — placeholder -->
+      <div class="bcard reveal d1" style="border-style:dashed;opacity:0.7">
+        <span class="b-tag">&#9679; Ideating</span>
+        <h3 class="b-title">Homework Bot</h3>
+        <p class="b-desc">Something is forming. A bot that takes the friction out of homework — for students and teachers alike. Details coming once the idea is ready.</p>
+        <div class="b-stack" style="margin-top:1.2rem">
+          <span class="b-stag">Telegram Bot</span>
+          <span class="b-stag">Homework</span>
+          <span class="b-stag">Rough Idea</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -583,7 +603,7 @@
   <div class="footer-logo">MrReyy<em>.com</em></div>
   <p class="footer-copy">&#169; 2025 &middot; Educator &amp; Digital Innovator &middot; Putrajaya, Malaysia</p>
   <ul class="footer-links">
-    <li><a href="https://cefr-lesson-planner-production.up.railway.app/" target="_blank" rel="noopener">CEFR Planner</a></li>
+    <li><a href="#projects" >My Tools</a></li>
     <li><a href="https://www.instagram.com/reyysmaanavuddaiyar" target="_blank" rel="noopener">Instagram</a></li>
     <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;g-57514736&#64;moe-dl.edu.my">Email</a></li>
   </ul>
