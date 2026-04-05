@@ -1,0 +1,20 @@
+{
+  "name": "mrreyy-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Mr Reyy - Educator & Digital Innovator",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML - no build needed'",
+    "lint": "echo 'No linter configured'"
+  },
+  "keywords": [
+    "portfolio",
+    "educator",
+    "digital-innovator"
+  ],
+  "author": "Mr Reyy",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1"
+  }
+}
